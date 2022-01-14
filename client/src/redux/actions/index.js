@@ -1,8 +1,9 @@
 
 // export const  = '';
 export const SORT = 'SORT';
-export const  GET_VIDEOGAME= 'GET_VIDEOGAME';
-export const  GET_VIDEOGAMES= 'GET_VIDEOGAMES';
+export const SORT_RATING = 'SORT_RATING';
+export const GET_VIDEOGAME= 'GET_VIDEOGAME';
+export const GET_VIDEOGAME_NAME= 'GET_VIDEOGAME_NAME';
 export const FILTER_GENRE = 'FILTER_GENRE';
 export const GET_GENRE = 'GET_GENRE';
 
@@ -24,10 +25,11 @@ export const getVideogame= ()=>{
 
 export const searchVideogame= (name)=>{
     return function(dispatch){
+
         return fetch(`http://localhost:3001/videogames?name=${name}`)
         .then(r => r.json())
         .then(json=>{
-            dispatch({type:GET_VIDEOGAMES, payload: json});
+            dispatch({type:GET_VIDEOGAME_NAME, payload: json});
         })
         .catch(err=>{
             console.log(err);
@@ -35,18 +37,18 @@ export const searchVideogame= (name)=>{
     } 
 }
 
-export const getVideogameID= (id)=>{
-    return function(dispatch){
-        return fetch(`http://localhost:3001/videogames/${id}`)
-        .then(r => r.json())
-        .then(json=>{
-            dispatch({type:GET_VIDEOGAMES, payload: json});
-        })
-        .catch(err=>{
-            console.log(err);
-        })
-    } 
-}
+// export const getVideogameID= (id)=>{
+//     return function(dispatch){
+//         return fetch(`http://localhost:3001/videogames/${id}`)
+//         .then(r => r.json())
+//         .then(json=>{
+//             dispatch({type:GET_VIDEOGAMES, payload: json});
+//         })
+//         .catch(err=>{
+//             console.log(err);
+//         })
+//     } 
+// }
 
 export const sort = (order) => {
     //alphabetical
@@ -56,6 +58,17 @@ export const sort = (order) => {
     }
 
 }
+
+
+export const sortRating = (order) => {
+    //alphabetical
+    return {
+        type: SORT_RATING,
+        payload: order,
+    }
+
+}
+
 
 export const filterGenre = (genre) => {
     
