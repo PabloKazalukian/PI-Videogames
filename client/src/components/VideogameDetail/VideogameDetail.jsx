@@ -14,7 +14,6 @@ function VideogameDetail (){
     useEffect(()=>{
         fetch(`http://localhost:3001/videogames/${id}`)
         .then(r =>{ 
-            console.log(r);
             if(!r.ok){
                 throw Error('could not fetch the data for that resource');
             } 

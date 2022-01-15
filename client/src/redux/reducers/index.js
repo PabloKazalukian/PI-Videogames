@@ -1,26 +1,40 @@
-import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,GET_GENRE,FILTER_GENRE} from '../actions/index';
+import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,GET_GENRE,FILTER_GENRE,GET_VIDEOGAMES} from '../actions/index';
 
 let initalState={
     videogame:[],
     videogameFilter: [],
     genres:[],
-    error:false
+    error:false,
+    complete:false
 }
 
 export default function rootReducer(state=initalState,action){
 
     switch(action.type){
         case GET_VIDEOGAME:
-            return{
-                ...state,
-                videogame: action.payload,
-                videogameFilter: action.payload,
-                error:false
+            if(state.complete){
+                return{...state,
+                    videogameFilter:state.videogame,
+                    complete:false
+                }
+            }else{
+                return{
+                    ...state,
+                    videogame: action.payload,
+                    videogameFilter: action.payload,
+                    error:false,
+                    complete:true
+                }
             }
         case GET_GENRE:
             return{ ...state,genres:action.payload}
         case GET_VIDEOGAME_NAME:
-            return {...state,videogameFilter: action.payload}
+            if(action.payload.length>=1){
+                return {...state,videogameFilter: action.payload}
+            }else{
+                return{...state,
+                    error:true}
+            }
         case SORT_RATING:
             let ordernamientoRT = [...state.videogameFilter];
             ordernamientoRT = ordernamientoRT.sort((a, b)=> {
@@ -49,9 +63,8 @@ export default function rootReducer(state=initalState,action){
             return{...state,
                 videogameFilter: ordernamientoVG}
         case FILTER_GENRE:
+
             return{...state,videogameFilter:state.videogame.filter((e)=>{
-                // console.log(e);
-                // console.log(action.payload);
                 if (e.genres?.find(elem=> elem.name.toLowerCase()===action.payload)){
                     return e;
                 }

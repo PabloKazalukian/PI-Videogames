@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import {getVideogame,getGenre,sort,sortRating,filterGenre} from '../../redux/actions'
+import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete} from '../../redux/actions'
 import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
 
@@ -15,19 +15,23 @@ function Videogame(props){
 
 
     const dispatch = useDispatch();
-    const videogame = useSelector(state => state.videogame)
-    const videogameFilter = useSelector(state => state.videogameFilter)
-    const genres = useSelector(state => state.genres)
+    const videogameFilter = useSelector(state => state.videogameFilter);
+    const genres = useSelector(state => state.genres);
+    const complete = useSelector(state => state.complete);
+
 
     // useEffects
     useEffect(()=>{
-        if(!err){    
+        if(!err){
             setLoading(false);
-            dispatch(getVideogame());
-            dispatch(getGenre())
-            setTimeout(() => {
-                setLoading(true);
-            }, 100);                                   
+            if(complete){
+                dispatch(getComplete());
+                
+            }else{
+                dispatch(getVideogame());
+            }
+            dispatch(getGenre());
+            setLoading(true);                                  
         }
     },[])
     useEffect(()=>{
@@ -35,9 +39,7 @@ function Videogame(props){
             setLoading(false);        
             setPage(videogameFilter);
             setCurrentPage(1);
-            setTimeout(() => {
-                setLoading(true);
-            }, 100);             
+            setLoading(true);
         }
             
     },[videogameFilter])
@@ -45,19 +47,28 @@ function Videogame(props){
 
     //Selection
     function selectionChange(e){
-        if(e.target.value==='none') {dispatch(getVideogame());}
-        else {dispatch(sort(e.target.value))};
+        // if(e.target.value==='none') {dispatch(getVideogame());}
+        // else {
+            dispatch(sort(e.target.value))
+        // };
     }
 
     function selectionChangeRT(e){
-        if(e.target.value==='none') {dispatch(getVideogame());}
-        else {dispatch(sortRating(e.target.value))};
+        // if(e.target.value==='none') {dispatch(getVideogame());}
+        // else {
+            dispatch(sortRating(e.target.value))
+        // };
     }
     function changeTemp(e){
         if(e.target.value === 'all') {
-            dispatch(getVideogame());
+            if(complete){
+                dispatch(getComplete());                
+            }else{
+                dispatch(getVideogame());
+            }
+        }else{
+            dispatch(filterGenre(e.target.value));
         }
-        dispatch(filterGenre(e.target.value));
     }
 
     //end Selection
@@ -73,7 +84,7 @@ function Videogame(props){
     
     return(
         <div>
-            {loading?
+            {!err?
             <>
                 <div>
                     <p>Filter By:</p>
@@ -90,14 +101,14 @@ function Videogame(props){
                     <p>Sort by alphabet:</p>
                     <select name='select' onChange={selectionChange} >
                         <option disabled selected>select</option>
-                        <option value='none'label={'none'}/>
+                        {/* <option value='none'label={'none'}/> */}
                         <option value="ascendente" label='ascendant'></option>
                         <option value="descendente" label='descendent'></option>
                     </select>
                     <p>Sort by Rating:</p>
                     <select name='select' onChange={selectionChangeRT} >
                         <option disabled selected>select</option>
-                        <option value='none'label={'none'}/>
+                        {/* <option value='none'label={'none'}/> */}
                         <option value="ascendente" label='ascendant'></option>
                         <option value="descendente" label='descendent'></option>
                     </select>
@@ -109,7 +120,7 @@ function Videogame(props){
                     paginate={paginate}
                 />
                 <>
-                    {currentPost?.map((game)=>{
+                    {currentPost?.length>=1?  currentPost.map((game)=>{
                         return <CardVideogame
                         name={game.name}
                         images={game.image}
@@ -118,11 +129,12 @@ function Videogame(props){
                         key={game.id}
                         id={game.id}
                         />
-                    })}
+                    })
+                    :<div><h2>Loading</h2></div>}
                 </>
             </>
             
-            :<div><h2>Loading</h2></div>
+            :<div><h2>Error</h2></div>
             }
 
 

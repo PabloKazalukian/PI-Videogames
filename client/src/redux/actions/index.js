@@ -3,6 +3,7 @@
 export const SORT = 'SORT';
 export const SORT_RATING = 'SORT_RATING';
 export const GET_VIDEOGAME= 'GET_VIDEOGAME';
+export const GET_VIDEOGAMES= 'GET_VIDEOGAMES';
 export const GET_VIDEOGAME_NAME= 'GET_VIDEOGAME_NAME';
 export const FILTER_GENRE = 'FILTER_GENRE';
 export const GET_GENRE = 'GET_GENRE';
@@ -11,7 +12,7 @@ export const GET_GENRE = 'GET_GENRE';
 
 
 export const getVideogame= ()=>{
-    return function(dispatch){
+    return  function(dispatch){
         return fetch(`http://localhost:3001/videogames`)
         .then(r => r.json())
         .then(json=>{
@@ -20,11 +21,19 @@ export const getVideogame= ()=>{
         .catch(err=>{
             console.log(err);
         })
-    } 
+    }
+    
+}
+export const getComplete = ()=>{
+    return {
+        type:GET_VIDEOGAME,
+        payload: ''
+    }
 }
 
+
 export const searchVideogame= (name)=>{
-    return function(dispatch){
+    return  function(dispatch){
 
         return fetch(`http://localhost:3001/videogames?name=${name}`)
         .then(r => r.json())

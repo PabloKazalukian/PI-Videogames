@@ -3,7 +3,6 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useLocation  } from "react-router";
 import {searchVideogame,getVideogame} from '../../redux/actions';
-
 import {Lin,NaviBar,SearchBar,NavUl,InputBar,ButtonBar,Lupa} from './Navegation.js';
 import {HiSearch} from 'react-icons/hi';
 
@@ -15,7 +14,7 @@ export default function NavBar(){
     const initialState ={
         gameSearch: ""
     }
-    const {pathname} = useLocation(); 
+    const {pathname} = useLocation();
     
     const [state,setstate] = useState(initialState);
 
@@ -28,12 +27,11 @@ export default function NavBar(){
      
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log(state.gameSearch);
         dispatch(searchVideogame(state.gameSearch));
     }
     function restart  (){
         if(pathname.toLowerCase() === '/api'){
-        dispatch(getVideogame());
+            dispatch(getVideogame());            
         }
     }
 
