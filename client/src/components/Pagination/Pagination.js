@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import {RED,DARK} from '../VariableSC';
+
 
 export const ContainerNav = styled.nav`
     display: flex;
@@ -6,7 +8,7 @@ export const ContainerNav = styled.nav`
     align-items: center;
     height: 55px;
     width: 100%;
-    background: #d8eefe;
+    background: ${DARK};
 `
 export const ContainerUl = styled.ul`
     display: flex;
@@ -14,7 +16,7 @@ export const ContainerUl = styled.ul`
     align-items: center;
     flex-direction: row;
     height: 45px;
-    background: #d8eefe;
+    background: ${DARK};
     list-style:none;
     gap: 1rem;
     padding: 0px;

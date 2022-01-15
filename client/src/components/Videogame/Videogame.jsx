@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
-import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete} from '../../redux/actions'
+import {getVideogame,getComplete} from '../../redux/actions'
 import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
+import Filters from "../Filters/Filters";
 
 function Videogame(props){
 
@@ -16,7 +17,6 @@ function Videogame(props){
 
     const dispatch = useDispatch();
     const videogameFilter = useSelector(state => state.videogameFilter);
-    const genres = useSelector(state => state.genres);
     const complete = useSelector(state => state.complete);
 
 
@@ -30,10 +30,10 @@ function Videogame(props){
             }else{
                 dispatch(getVideogame());
             }
-            dispatch(getGenre());
             setLoading(true);                                  
         }
     },[])
+
     useEffect(()=>{
         if(!err){
             setLoading(false);        
@@ -45,33 +45,7 @@ function Videogame(props){
     },[videogameFilter])
     //end useEffects
 
-    //Selection
-    function selectionChange(e){
-        // if(e.target.value==='none') {dispatch(getVideogame());}
-        // else {
-            dispatch(sort(e.target.value))
-        // };
-    }
-
-    function selectionChangeRT(e){
-        // if(e.target.value==='none') {dispatch(getVideogame());}
-        // else {
-            dispatch(sortRating(e.target.value))
-        // };
-    }
-    function changeTemp(e){
-        if(e.target.value === 'all') {
-            if(complete){
-                dispatch(getComplete());                
-            }else{
-                dispatch(getVideogame());
-            }
-        }else{
-            dispatch(filterGenre(e.target.value));
-        }
-    }
-
-    //end Selection
+    
 
     //1 * 8 , 8 - 8 , slice (0 , 8) case 1
     //2 * 8 , 16 - 8 , slice (8 , 16) case 2
@@ -84,36 +58,10 @@ function Videogame(props){
     
     return(
         <div>
+            <Filters/>
             {!err?
             <>
-                <div>
-                    <p>Filter By:</p>
-                    <select name='selectFilter' onChange={changeTemp}  >
-                        <option disabled selected>select</option>
-                        <option value='all'label={'all Genres'}/>
-                        
-                        { genres && genres.map( (g)=>{
 
-                            return <option key={g.id} value={g.name} label={g.name}/>
-                            
-                        })}
-                    </select>
-                    <p>Sort by alphabet:</p>
-                    <select name='select' onChange={selectionChange} >
-                        <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
-                    </select>
-                    <p>Sort by Rating:</p>
-                    <select name='select' onChange={selectionChangeRT} >
-                        <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
-                    </select>
-                    
-                </div>
                 <Pagination
                     cantPage={cantPage}
                     totalPage={page.length}
@@ -136,7 +84,6 @@ function Videogame(props){
             
             :<div><h2>Error</h2></div>
             }
-
 
         </div>
     )

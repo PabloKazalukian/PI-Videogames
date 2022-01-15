@@ -2,6 +2,15 @@
   text-align: center;
 }
 
+
+.apps{
+  background: #181c23;
+  /* background-image: url('https://i.pinimg.com/originals/c9/cd/b6/c9cdb633902c8acdc074069b79890240.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed; */
+  min-height: 100vh;
+  color:#fcfcfc;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

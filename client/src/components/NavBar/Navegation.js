@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import {RED,DARK} from '../VariableSC';
 
 
 export const NaviBar = styled.nav`
@@ -20,7 +21,7 @@ export const NavUl = styled.ul`
     height: 65px;    
     margin: 0px;
     position:fixed;
-    background: #094067;
+    background: ${DARK};
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -58,7 +59,7 @@ export const ButtonBar = styled.input`
     margin-left: 10px ;
     box-sizing: border-box;
     padding:5px 25px;
-    background:#ef4565;
+    background:${RED};
     border-radius: 5px;
     font-family: 'Outfit', sans-serif;
     letter-spacing: 1px;
@@ -72,7 +73,7 @@ export const ButtonBar = styled.input`
 `
 export const Lin = styled(Link)`
     box-sizing: border-box;
-    background-color: #ef4565;
+    background-color: ${RED};
     margin: 0px;
     text-decoration: none;
     width: 10%;

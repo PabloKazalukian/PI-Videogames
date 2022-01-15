@@ -30,10 +30,16 @@ export default function rootReducer(state=initalState,action){
             return{ ...state,genres:action.payload}
         case GET_VIDEOGAME_NAME:
             if(action.payload.length>=1){
-                return {...state,videogameFilter: action.payload}
+                return {
+                    ...state,
+                    videogameFilter: action.payload,
+                    error:false
+                }
             }else{
-                return{...state,
-                    error:true}
+                return{
+                    ...state,
+                    error:true
+                }
             }
         case SORT_RATING:
             let ordernamientoRT = [...state.videogameFilter];
@@ -63,13 +69,27 @@ export default function rootReducer(state=initalState,action){
             return{...state,
                 videogameFilter: ordernamientoVG}
         case FILTER_GENRE:
-
-            return{...state,videogameFilter:state.videogame.filter((e)=>{
+            let filterGenre=[...state.videogame];
+            filterGenre = filterGenre.filter((e)=>{
                 if (e.genres?.find(elem=> elem.name.toLowerCase()===action.payload)){
                     return e;
                 }
 
-            })}
+            });
+            if(filterGenre.length>=1){
+                return{
+                    ...state,
+                    videogameFilter: filterGenre,
+                    error:false
+                }
+            } else{
+                return{
+                    ...state,
+                    videogameFilter: filterGenre,
+                    error: true,
+                }
+
+            }
         default:
             return state;
     }
