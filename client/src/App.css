@@ -4,12 +4,18 @@
 
 
 .apps{
+  box-sizing: border-box;
   background: #181c23;
+  background-image: url('https://www.solofondos.com/wp-content/uploads/2015/11/fondo.png');
   /* background-image: url('https://i.pinimg.com/originals/c9/cd/b6/c9cdb633902c8acdc074069b79890240.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed; */
   min-height: 100vh;
   color:#fcfcfc;
+  /* font-family: 'Outfit', sans-serif; */
+  font-family: 'Signika Negative', sans-serif;
+  /* font-family: 'Roboto', sans-serif; */
+  letter-spacing: 1.3px;
 }
 .App-logo {
   height: 40vmin;

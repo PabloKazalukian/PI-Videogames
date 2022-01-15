@@ -6,6 +6,8 @@ import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
 import Filters from "../Filters/Filters";
 
+import {Container,ContainerCards} from './Videogame';
+
 function Videogame(props){
 
     const err = useSelector(state => state.error);
@@ -57,7 +59,7 @@ function Videogame(props){
     const paginate = pageNumber => setCurrentPage(pageNumber);
     
     return(
-        <div>
+        <Container>
             <Filters/>
             {!err?
             <>
@@ -68,6 +70,7 @@ function Videogame(props){
                     paginate={paginate}
                 />
                 <>
+                    <ContainerCards>
                     {currentPost?.length>=1?  currentPost.map((game)=>{
                         return <CardVideogame
                         name={game.name}
@@ -79,13 +82,14 @@ function Videogame(props){
                         />
                     })
                     :<div><h2>Loading</h2></div>}
+                    </ContainerCards>
                 </>
             </>
             
             :<div><h2>Error</h2></div>
             }
 
-        </div>
+        </Container>
     )
 
 }

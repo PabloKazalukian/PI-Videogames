@@ -12,7 +12,6 @@ export const ContainerTemp = styled.form`
     background: #3331;//3331
     min-height: 80px ;
     overflow: hidden;
-
 `;
 
 export const TempShow = styled.div`    

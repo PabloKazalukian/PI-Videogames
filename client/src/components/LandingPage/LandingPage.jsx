@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 
-function LandingPage(){
-    return(<div
-        style={{width:'100%',height:'100%'}}
-        >
-                <img 
-                style={{width:'100%',height:'100vh'}}
-                src='https://wallpapercave.com/wp/BFFsnBO.jpg' />
+import {Button, Span,Container,Text,Title} from './LandingPage'
 
-        </div>
+
+//  <Image src='https://wallpapercave.com/wp/BFFsnBO.jpg' /> 
+function LandingPage(){
+    return(
+    <Container>
+        <Text>
+            <Title> V-Gamming</Title>
+        </Text>
+        <Button  to={'/Api'}><Span>Start</Span></Button>
+
+    </Container>
     )
 
 }

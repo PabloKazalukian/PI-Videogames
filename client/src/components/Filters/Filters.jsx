@@ -3,7 +3,7 @@ import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete} from '../
 import { useDispatch,useSelector } from "react-redux";
 
 
-
+import {Container,ContainerFilter} from './Filters.js'
 
 
 function Filters (){
@@ -47,33 +47,39 @@ function Filters (){
 
     return(
 
-        <div>
-            <p>Filter By:</p>
-                    <select name='selectFilter' onChange={changeTemp}  >
-                        <option disabled selected>select</option>
-                        <option value='all'label={'all Genres'}/>
-                        
-                        { genres && genres.map( (g)=>{
+        <Container>
+            <ContainerFilter>
+                <p>Filter By:</p>
+                <select name='selectFilter' onChange={changeTemp}  >
+                    <option disabled selected>select</option>
+                    <option value='all'label={'all Genres'}/>
+                    
+                    { genres && genres.map( (g)=>{
 
-                            return <option key={g.id} value={g.name} label={g.name}/>
-                            
-                        })}
-                    </select>
-                    <p>Sort by alphabet:</p>
-                    <select name='select' onChange={selectionChange} >
-                        <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
-                    </select>
-                    <p>Sort by Rating:</p>
-                    <select name='select' onChange={selectionChangeRT} >
-                        <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
-                    </select>
-        </div>
+                        return <option key={g.id} value={g.name} label={g.name}/>
+                        
+                    })}
+                </select>
+            </ContainerFilter>
+            <ContainerFilter>
+                <p>Sort by alphabet:</p>
+                <select name='select' onChange={selectionChange} >
+                    <option disabled selected>select</option>
+                    {/* <option value='none'label={'none'}/> */}
+                    <option value="ascendente" label='ascendant'></option>
+                    <option value="descendente" label='descendent'></option>
+                </select>
+            </ContainerFilter>
+            <ContainerFilter>
+                <p>Sort by Rating:</p>
+                <select name='select' onChange={selectionChangeRT} >
+                    <option disabled selected>select</option>
+                    {/* <option value='none'label={'none'}/> */}
+                    <option value="ascendente" label='ascendant'></option>
+                    <option value="descendente" label='descendent'></option>
+                </select>
+            </ContainerFilter>
+        </Container>
     )
 }
 
