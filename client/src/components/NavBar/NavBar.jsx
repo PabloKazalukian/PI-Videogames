@@ -27,7 +27,9 @@ export default function NavBar(){
      
     const handleSubmit = (e) =>{
         e.preventDefault();
+        // console.log(e.target.childNodes[0].value );
         dispatch(searchVideogame(state.gameSearch));
+        // e.target.childNodes[0].value='';
     }
     function restart  (){
         if(pathname.toLowerCase() === '/api'){
@@ -50,7 +52,7 @@ export default function NavBar(){
                                 onChange={handleState}
                                 value={state.gameSearch}
                                 type="search" />
-                            <ButtonBar type="submit" value='Search'></ButtonBar>
+                            <ButtonBar type="submit" value='Search'/>
                             <Lupa><HiSearch/></Lupa>
                             
                         </SearchBar>

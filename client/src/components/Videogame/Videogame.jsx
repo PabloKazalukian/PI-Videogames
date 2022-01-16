@@ -4,11 +4,11 @@ import { useDispatch,useSelector } from "react-redux";
 import {getVideogame,getComplete} from '../../redux/actions'
 import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
-import Filters from "../Filters/Filters";
+import Filters from "../Filters/Filters.jsx";
 
 import {Container,ContainerCards} from './Videogame';
 
-function Videogame(props){
+function Videogame(){
 
     const err = useSelector(state => state.error);
     const [page,setPage] = useState([]);//contenedor total

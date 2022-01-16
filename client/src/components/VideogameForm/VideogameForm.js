@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {RED,DARK} from '../VariableSC';
+// import {RED,DARK} from '../VariableSC';
 
 export const Container = styled.div`
 
@@ -13,6 +13,7 @@ export const ContainerTemp = styled.form`
     min-height: 80px ;
     overflow: hidden;
 `;
+
 
 export const TempShow = styled.div`    
     color: #fffffe;

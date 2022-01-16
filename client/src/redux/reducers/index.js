@@ -14,8 +14,7 @@ export default function rootReducer(state=initalState,action){
         case GET_VIDEOGAME:
             if(state.complete){
                 return{...state,
-                    videogameFilter:state.videogame,
-                    complete:false
+                    videogameFilter:state.videogame
                 }
             }else{
                 return{
@@ -32,15 +31,19 @@ export default function rootReducer(state=initalState,action){
             if(action.payload.length>=1){
                 return {
                     ...state,
+                    videogame: action.payload,
                     videogameFilter: action.payload,
-                    error:false
+                    error:false,
+                    complete:false,
                 }
             }else{
                 return{
                     ...state,
-                    error:true
+                    error:true,
+                    complete:false,
                 }
             }
+
         case SORT_RATING:
             let ordernamientoRT = [...state.videogameFilter];
             ordernamientoRT = ordernamientoRT.sort((a, b)=> {

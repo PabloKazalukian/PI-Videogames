@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {RED,DARK} from '../VariableSC';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
     /* background:red; */
