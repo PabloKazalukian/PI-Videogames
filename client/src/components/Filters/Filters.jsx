@@ -4,7 +4,7 @@ import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete} from '../
 import { useDispatch,useSelector } from "react-redux";
 
 
-import {Container,ContainerFilter,ShowFilter,ContainerSort,ButtonFilter} from './Filters.js'
+import {Container,ContainerFilter,ShowFilter,ContainerSort,ButtonFilter,ButtonClear} from './Filters.js'
 
 
 function Filters (){
@@ -56,6 +56,14 @@ function Filters (){
         
 
     }
+    function clearGenres (){
+        dispatch(filterGenre(''));
+        setState({
+            ...state,
+            filter:''
+        })
+
+    }
 
     //end Selection
 
@@ -81,6 +89,9 @@ function Filters (){
                     <ButtonFilter onClick={filterGenres}>
                         Filter
                     </ButtonFilter>
+                    <ButtonClear onClick={clearGenres}>
+                        Clear
+                    </ButtonClear>
                 </ContainerFilter>
             }
             <ContainerSort>

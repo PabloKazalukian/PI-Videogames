@@ -30,3 +30,7 @@ export const ContainerSort = styled.div`
 export const ButtonFilter = styled.button`
 
 `;
+
+export const ButtonClear = styled.button`
+
+`;

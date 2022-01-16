@@ -19,6 +19,8 @@ router.get('/',async(req,res,next)=>{
         if(name){
             videogameApi = await getSearchVideogame(name);
             videogameDb= await Videogame.findAll({include: Genre })
+            videogameDb=videogameDb.filter(game => game.dataValues.name.toLowerCase().includes(name.toLowerCase()))
+
 
         }else{
             videogameDb= await Videogame.findAll({include: Genre })
@@ -37,10 +39,10 @@ router.get('/',async(req,res,next)=>{
                     release_date: game.released,
                     image: game.background_image,
                     rating: game.rating,
-                    platforms: game.platforms.map(p =>{
+                    platforms: game.platforms?.map(p =>{
                         return p.platform.name
                     }).join(', '),
-                    genres: game.genres.map(genre =>{
+                    genres: game.genres?.map(genre =>{
                         return{
                             id: genre.id,
                             name: genre.name
@@ -49,7 +51,7 @@ router.get('/',async(req,res,next)=>{
                 }
             })
 
-            let allVideogame= [...videogameFilterAPI,...videoDB];
+            let allVideogame= [...videogameFilterAPI,...videogameDb];
 
             res.send(allVideogame);
         })

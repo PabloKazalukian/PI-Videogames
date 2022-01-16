@@ -39,6 +39,8 @@ export default function rootReducer(state=initalState,action){
             }else{
                 return{
                     ...state,
+                    videogame: action.payload,
+                    videogameFilter: action.payload,
                     error:true,
                     complete:false,
                 }
@@ -73,12 +75,14 @@ export default function rootReducer(state=initalState,action){
                 videogameFilter: ordernamientoVG}
         case FILTER_GENRE:
             let filterGenre=[...state.videogame];
-            filterGenre = filterGenre.filter((e)=>{
-                if (e.genres?.find(elem=> elem.name.toLowerCase()===action.payload)){
-                    return e;
-                }
-
-            });
+            if(action.payload !==''){
+                filterGenre = filterGenre.filter((e)=>{
+                    if (e.genres?.find(elem=> elem.name.toLowerCase()===action.payload)){
+                        return e;
+                    }
+    
+                });
+            }
             if(filterGenre.length>=1){
                 return{
                     ...state,
