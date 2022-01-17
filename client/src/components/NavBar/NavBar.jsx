@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useLocation  } from "react-router";
 import {searchVideogame,getVideogame} from '../../redux/actions';
-import {Lin,NaviBar,SearchBar,NavUl,InputBar,ButtonBar,Lupa} from './Navegation.js';
+import {Lin,NaviBar,SearchBar,NavUl,Linb,InputBar,ButtonBar,Lupa} from './Navegation.js';
 import {HiSearch} from 'react-icons/hi';
 
 
@@ -43,7 +43,7 @@ export default function NavBar(){
             <NaviBar>
                 <NavUl>
                                         
-                    <Lin onClick={restart} to={'/Api'}>V-Gamming </Lin>
+                    <Linb onClick={restart} href={'/Api'}>V-Gamming </Linb>
                     { pathname.toLowerCase() === '/api' ?
                         <SearchBar onSubmit={handleSubmit}>
                             <InputBar 

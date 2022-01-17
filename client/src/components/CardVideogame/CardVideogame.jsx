@@ -1,26 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import {Container} from './CardVideogame.js';
+import {Container,ContainerAll,Name,Button,Img,Text} from './CardVideogame.js';
 
 function CardVideogame(props){
 
     
     return(
         <Container>
-            <div>
-                <img src={props.images} 
-                    style={{width:'250px',height:'250px'}}
+            <ContainerAll>
+                <Img src={props.images} 
                     alt={props.name}
                     />
-                <h2>{props.name}</h2>
-                <p>{props.genres?.map(g=>{
+                <Name>{props.name}</Name>
+                <Text>{props.genres?.map(g=>{
                     return g.name
-                }).join(', ')}</p>
+                }).join(', ')}</Text>
                 <p>Rating: {props.rating}</p>
-                <Link to={`/Api/search/${props.id}`}>{props.id}</Link>
-            </div>
-
+                <Button to={`/Api/search/${props.id}`}>Detail</Button>
+            </ContainerAll>
         </Container>
     )
 }

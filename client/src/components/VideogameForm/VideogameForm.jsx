@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react'
 import { getGenre} from '../../redux/actions';
 import { useDispatch,useSelector } from 'react-redux';
 
-import {Container,ContainerTemp,TempShow,TempName,DeleteTemp} from './VideogameForm'
+import {Container,BottomReturn,ContainerForm,Form,ContainerTemp,TempShow,TempName,DeleteTemp,Submit} from './VideogameForm'
 
 const validate = values =>{
     const errors ={}
@@ -90,8 +90,6 @@ function VideogameForm (){
             })
     }
     
-    
-    
     const handleChange =(e)=>{
         const {name,value} = e.target
         //change format need let in value
@@ -114,9 +112,9 @@ function VideogameForm (){
             console.log(state);
             console.log('formulario valido');
             addGame(state);
+            setSumbit(true);
         }
         //falta validar
-        // setSumbit(true);
 
     }
 
@@ -159,79 +157,83 @@ function VideogameForm (){
     }
       
     const {errors} = state;
+
     return(
-        <div>
-            <h2>Created a Videogame!</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name: </label>
-                    <input 
-                        // placeholder='5-40 characters'
-                        name='name' 
-                        onChange={handleChange}
-                        // value={state.name}
-                        />
+            <Container>
+        {
+            !submitComp?
+            <ContainerForm>   
+                <h2>Created a Videogame!</h2>
+                <Form onSubmit={handleSubmit}>
+                    <div>
+                        <label>Name: </label>
+                        <input name='name' onChange={handleChange}/>
                         {errors.name? <p>{errors.name}</p>:<p> </p>}
-                </div>
-                <div>
-                    <label>Description: </label>
-                    <input 
-                        type='text'
-                        name='description'
-                        onChange={handleChange}
-                    />
-                    {errors.description? <p>{errors.description}</p>:<p> </p>}
+                        
+                    </div>
+                    <div>
+                        <label>Description: </label>
+                        <input type='text' name='description' onChange={handleChange} />
+                        {errors.description? <p>{errors.description}</p>:<p> </p>}
 
-                </div>
-                <div>
-                    <label>Imagen: </label>
-                    <input type='text' name='image' onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label>Imagen: </label>
+                        <input type='text' name='image' onChange={handleChange} />
 
-                </div>
-                <div>
-                    <label>Realease_Date: </label>
-                    <input type="date" name='release_date' onChange={handleChange} />
-                    {errors.release_date? <p>{errors.release_date}</p>:<p> </p>}
+                    </div>
+                    <div>
+                        <label>Realease_Date: </label>
+                        <input type="date" name='release_date' onChange={handleChange} />
+                        {errors.release_date? <p>{errors.release_date}</p>:<p> </p>}
 
-                </div>
-                <div>
-                    <label>Rating: </label>
-                    <input type="number" name='rating' onChange={handleChange}/>
-                    {errors.rating?  <p>{errors.rating}</p>:<p> </p>}
+                    </div>
+                    <div>
+                        <label>Rating: </label>
+                        <input type="number" name='rating' onChange={handleChange}/>
+                        {errors.rating?  <p>{errors.rating}</p>:<p> </p>}
 
-                </div>
-                <div>
-                    <label>Plataforms: </label>
-                    <input type="text" name='platforms' onChange={handleChange}/>
-                    {errors.platforms? <p>{errors.platforms}</p>:<p> </p>}
+                    </div>
+                    <div>
+                        <label>Plataforms: </label>
+                        <input type="text" name='platforms' onChange={handleChange}/>
+                        {errors.platforms? <p>{errors.platforms}</p>:<p> </p>}
 
-                </div>
-                <div>
-                    <label>Filter By:</label>
-                    <select name='selectFilter' onChange={selectGenres}  >
-                        <option disabled selected>select</option>                   
-                        { genres && genres.map( (g)=>{
+                    </div>
+                    <div>
+                        <label>Filter By:</label>
+                        <select name='selectFilter' onChange={selectGenres}  >
+                            <option disabled selected>select</option>                   
+                            { genres && genres.map( (g)=>{
 
-                            return <option key={g.id} value={g.id} label={g.name}/>
-                            
-                        })}
-                    </select>
-                </div>
-                {errors.genre? <p>{errors.genre}</p>:<p> </p>}
-                <ContainerTemp> 
-                    {genreShow?.genreShow?.map(e =>(
-                    <TempShow key ={e}>
-                        <TempName >{e}</TempName>
-                        <DeleteTemp 
-                        onClick={deleteGenre}
-                        value={e}>X</DeleteTemp>
-                    </TempShow>
-                    ))}
-                </ContainerTemp>
-                <input type='submit'></input>
-            </form>
+                                return <option key={g.id} value={g.id} label={g.name}/>
+                                
+                            })}
+                        </select>
+                    </div>
+                    {errors.genre? <p>{errors.genre}</p>:<p> </p>}
+                    <ContainerTemp> 
+                        {genreShow?.genreShow?.map(e =>(
+                        <TempShow key ={e}>
+                            <TempName >{e}</TempName>
+                            <DeleteTemp 
+                            onClick={deleteGenre}
+                            value={e}>X</DeleteTemp>
+                        </TempShow>
+                        ))}
+                    </ContainerTemp>
 
-        </div>
+
+                    <Submit type='submit' value={'Submit'}></Submit>
+                </Form>
+            </ContainerForm>
+            
+            :<ContainerForm>
+                <p>Game added successfully!</p>
+                <BottomReturn to={'/Api'}>Back to Home</BottomReturn>
+            </ContainerForm>
+    }
+            </Container>
     )
 }
 

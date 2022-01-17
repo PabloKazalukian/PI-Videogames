@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import {useParams} from 'react-router';
 import { useEffect } from "react";
+import Loading from "../Loading/Loading.jsx";
+
+import {Container,ContainerDetail,ContainerImg,ContainerRest,Description,Img,Name} from './VideogameDetail'
 
 function VideogameDetail (){
 
@@ -32,29 +35,29 @@ function VideogameDetail (){
     // id,description,genres,name,image,plataforms,rating,release_date
 
     return(
-        <div>
+        <Container>
             {loading?
-            <>
-                <div>
-                    <h1>{game?.name}</h1>
-                    <img
+            <ContainerDetail>
+                <ContainerImg>
+                    <Name>{game?.name}</Name>
+                    <Img
                         src={game?.image}
-                        style={{width:'250px',height:'250px'}}
                     />
-                </div>
-                <div>
-                    <p>Description:<br/>{game?.description}</p>
+                </ContainerImg>
+                <ContainerRest>
+                    <Description>Description:<br/>{game?.description}</Description>
                     <p>Genres: <br/>{game?.genres?.map(e=>{
                         return e.name
                     }).join(', ')}</p>
                     <p>Plataforms: <br/>{game?.platforms}</p>
                     <p>Rating: <br/>{game?.rating}</p>
                     <p>Release_date: <br/>{game?.release_date}</p>
-                </div> 
-            </>            
-            :<div><h2>Loading</h2></div>
+                </ContainerRest> 
+            </ContainerDetail>            
+            // :<div><h2>Loading</h2></div>
+            :<Loading/>
             }
-        </div>
+    </Container>
     )
 }
 

@@ -1,4 +1,4 @@
-import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,GET_GENRE,FILTER_GENRE,GET_VIDEOGAMES} from '../actions/index';
+import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,FILTER_DB,GET_GENRE,FILTER_GENRE,GET_VIDEOGAMES} from '../actions/index';
 
 let initalState={
     videogame:[],
@@ -73,6 +73,35 @@ export default function rootReducer(state=initalState,action){
             })
             return{...state,
                 videogameFilter: ordernamientoVG}
+        case FILTER_DB:
+            let filterDB=[...state.videogame];
+            
+            if(action.payload ==='DB'){
+                filterDB = filterDB.filter((e)=>{
+                    return e.id.length > 8
+                });
+
+            }else{
+                filterDB = filterDB.filter((e)=>{
+                    return typeof e.id !=='string'
+                });
+            }
+
+            if(filterDB.length>=1){
+                return{
+                    ...state,
+                    videogameFilter: filterDB,
+                    error:false
+                }
+            } else{
+                return{
+                    ...state,
+                    videogameFilter: filterDB,
+                    error: true,
+                }
+
+            }
+            
         case FILTER_GENRE:
             let filterGenre=[...state.videogame];
             if(action.payload !==''){

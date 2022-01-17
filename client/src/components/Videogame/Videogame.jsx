@@ -5,6 +5,8 @@ import {getVideogame,getComplete} from '../../redux/actions'
 import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
 import Filters from "../Filters/Filters.jsx";
+import Loading from "../Loading/Loading.jsx";
+
 
 import {Container,ContainerCards} from './Videogame';
 
@@ -32,16 +34,22 @@ function Videogame(){
             }else{
                 dispatch(getVideogame());
             }
-            setLoading(true);                                  
+            setTimeout(() => {
+                setLoading(true);
+            }, 2000);  
         }
     },[])
 
     useEffect(()=>{
         if(!err){
-            setLoading(false);        
+            if(videogameFilter.length<1){
+                setLoading(false);
+            }
             setPage(videogameFilter);
             setCurrentPage(1);
-            setLoading(true);
+            setTimeout(() => {
+                setLoading(true);
+            }, 1200);
         }
             
     },[videogameFilter])
@@ -59,37 +67,44 @@ function Videogame(){
     const paginate = pageNumber => setCurrentPage(pageNumber);
     
     return(
-        <Container>
-            <Filters/>
-            {!err?
-            <>
+        <>
+        {loading?
+            <Container>
+                
+                <Filters/>
+                {!err?
+                    <>
 
-                <Pagination
-                    cantPage={cantPage}
-                    totalPage={page.length}
-                    paginate={paginate}
-                />
-                <>
-                    <ContainerCards>
-                    {currentPost?.length>=1?  currentPost.map((game)=>{
-                        return <CardVideogame
-                        name={game.name}
-                        images={game.image}
-                        genres={game.genres}
-                        rating={game.rating}
-                        key={game.id}
-                        id={game.id}
+                        <Pagination
+                            cantPage={cantPage}
+                            totalPage={page.length}
+                            paginate={paginate}
                         />
-                    })
-                    :<div><h2>Loading</h2></div>}
-                    </ContainerCards>
-                </>
-            </>
-            
-            :<div><h2>Error</h2></div>
-            }
+                        <>
+                            <ContainerCards>
+                            { !currentPost?.length<1? currentPost?.map((game)=>{
+                                    return <CardVideogame
+                                    name={game.name}
+                                    images={game.image}
+                                    genres={game.genres}
+                                    rating={game.rating}
+                                    key={game.id}
+                                    id={game.id}
+                                    />
+                                })
+                            :<Loading/>}
+                            </ContainerCards>
+                        </>
+                    </>
+                
+                :<div><h2>Error</h2></div>
+                }
 
-        </Container>
+            </Container>
+        :<Loading/>}
+                            
+        
+        </>
     )
 
 }

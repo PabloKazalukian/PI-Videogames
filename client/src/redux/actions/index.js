@@ -6,6 +6,7 @@ export const GET_VIDEOGAME= 'GET_VIDEOGAME';
 export const GET_VIDEOGAMES= 'GET_VIDEOGAMES';
 export const GET_VIDEOGAME_NAME= 'GET_VIDEOGAME_NAME';
 export const FILTER_GENRE = 'FILTER_GENRE';
+export const FILTER_DB = 'FILTER_DB';
 export const GET_GENRE = 'GET_GENRE';
 
 
@@ -78,6 +79,15 @@ export const sortRating = (order) => {
 
 }
 
+export const filterDb = (db) => {
+    console.log(db)
+    
+    return {
+        type: FILTER_DB,
+        payload: db,
+    }
+
+}
 
 export const filterGenre = (genre) => {
     

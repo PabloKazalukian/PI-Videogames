@@ -13,7 +13,7 @@ export const NaviBar = styled.nav`
     z-index: 20;
     font-family: 'Outfit', sans-serif;
     letter-spacing: 1px;;
-`;
+    `;
 export const NavUl = styled.ul`
     box-sizing: border-box;
     display: flex;
@@ -26,7 +26,7 @@ export const NavUl = styled.ul`
     justify-content: space-between;
     align-items: center;
     list-style:none;
-    padding: 0px 20px;
+    padding: 0px 80px;
 `
 export const SearchBar = styled.form`
     width: 80%;
@@ -88,12 +88,30 @@ export const Lin = styled(Link)`
         color: #333;
     }
 `
+export const Linb = styled.a`
+    box-sizing: border-box;
+    background-color: ${RED};
+    margin: 0px;
+    text-decoration: none;
+    width: 10%;
+    height: 50px;
+    color: #fffffe;
+    padding: 14px 0px;
+    text-align: center;
+    font-weight:700;
+    border-radius:3px;
+    letter-spacing: 1px;
+    &:hover{
+        color: #333;
+    }
+`
 export const Lupa = styled.div`
     background:transparent;
     display:flex;
     justify-content: center;
     align-items: center;
+    color: ${DARK};
     position: absolute;
     top:40%;
-    left: 67%;
+    left:66%;
 `

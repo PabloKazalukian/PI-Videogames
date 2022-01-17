@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation  } from "react-router";
-import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete} from '../../redux/actions'
+import {getVideogame,getGenre,sort,sortRating,filterGenre,getComplete,filterDb} from '../../redux/actions'
 import { useDispatch,useSelector } from "react-redux";
 
 
@@ -46,7 +46,6 @@ function Filters (){
             ...state,
             filter:value
         })
-        console.log(state.filter)
     }
 
     function filterGenres(){
@@ -65,6 +64,12 @@ function Filters (){
 
     }
 
+    function filterDB(e){
+        const {value} = e.target;
+        dispatch(filterDb(value));
+        
+
+    }
     //end Selection
 
 
@@ -86,12 +91,26 @@ function Filters (){
                         })}
                     </select>
                     <ShowFilter>{state.filter}</ShowFilter>
+
                     <ButtonFilter onClick={filterGenres}>
                         Filter
                     </ButtonFilter>
-                    <ButtonClear onClick={clearGenres}>
-                        Clear
-                    </ButtonClear>
+                    
+
+                        <p>Filter DB/API:</p>
+                        <ButtonFilter value={'DB'} onClick={filterDB}>
+                            Filter DB
+                        </ButtonFilter>
+                        <ButtonFilter value={'API'} onClick={filterDB}>
+                            Filter API
+                        </ButtonFilter>
+                    
+                    {/* <select name='select' onChange={filterDB} >
+                        <option disabled selected>select</option>
+                        <option value="DB" label='Data Base'></option>
+                        <option value="API" label='API'></option>
+                    </select> */}
+
                 </ContainerFilter>
             }
             <ContainerSort>
@@ -99,21 +118,20 @@ function Filters (){
                     <p>Sort by alphabet:</p>
                     <select name='select' onChange={selectionChange} >
                         <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
+                        <option value="ascendente" label='A-Z'></option>
+                        <option value="descendente" label='Z-A'></option>
                     </select>
                 </ContainerFilter>
                 <ContainerFilter>
                     <p>Sort by Rating:</p>
                     <select name='select' onChange={selectionChangeRT} >
                         <option disabled selected>select</option>
-                        {/* <option value='none'label={'none'}/> */}
-                        <option value="ascendente" label='ascendant'></option>
-                        <option value="descendente" label='descendent'></option>
+                        <option value="ascendente" label='5-0'></option>
+                        <option value="descendente" label='0-5'></option>
                     </select>
                 </ContainerFilter>
             </ContainerSort>
+            <ButtonClear onClick={clearGenres}>Clear All</ButtonClear>
         </Container>
     )
 }
