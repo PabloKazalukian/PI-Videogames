@@ -1,5 +1,28 @@
 import styled from 'styled-components';
-import {RED,DARKL,DARK,WHITE,WHITEL} from '../VariableSC';
+import {RED,DARKL,WHITE} from '../VariableSC';
+import { keyframes } from "styled-components";
+
+
+const  Animate= keyframes`
+    0%, 100% {
+    text-shadow: -3px -3px 0 #2943d1, 2px 2px 0 #f00;
+    }
+
+    25% {
+    text-shadow: 3px 3px 0 #2943d1, -2px -2px 0 #f00;
+    }
+
+    50% {
+    text-shadow: 3px -3px 0 #2943d1, -2px 2px 0 #f00;
+    }
+
+    75% {
+    text-shadow: -3px 3px 0 #2943d1, 2px -2px 0 #f00;
+    }
+
+    100% {
+    text-shadow: 3px 3px 0 #2943d1, -2px -2px 0 #f00;}
+`;
 
 export const Container = styled.div`
     box-sizing: border-box;
@@ -13,22 +36,43 @@ export const Container = styled.div`
 
 export const ContainerFilter = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     gap: 15px;
-    align-items: center;
+    align-items: flex-start;
     width: 550px;
     padding:10px;
     text-align: center;
     border-radius: 2px;
-`;
-
-export const ShowFilter = styled.h2`
-    
+    width: 100%;
 `;
 
 export const ContainerSort = styled.div`
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    gap:250px;
+    width: 100%;
+`;
+export const Sort = styled.div`
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0px;
+`;
+
+export const ShowFilter = styled.h2`
+    animation: ${Animate} 2.5s linear infinite ;
+    min-height:30px ;
+`;
+
+export const Filter= styled.div`
+    min-width: 256px;
+
+`;
+
+export const FilterBy = styled.p`
+    height: 40px;
+    text-align: center;
 `;
 
 export const ButtonFilter = styled.button`

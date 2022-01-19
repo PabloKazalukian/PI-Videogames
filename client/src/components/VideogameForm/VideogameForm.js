@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {RED,DARKL,DARK,WHITE,WHITEL} from '../VariableSC';
-import { Link } from 'react-router-dom';
+import {RED,DARKL,WHITE,WHITEL} from '../VariableSC';
 
 
 export const Container = styled.div`
@@ -11,25 +10,25 @@ export const Container = styled.div`
 
 export const ContainerForm = styled.div`
     margin: 10px;
-    border: 1px solid ${WHITEL};
-    display: flex;
-    background:${DARKL};
-    backdrop-filter:blur(5px);
     width: 500px;
+    display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    border: 1px solid ${WHITEL};
+    background:${DARKL};
+    backdrop-filter:blur(5px);
     border-radius: 12px;
     
 `;
-export const ContainerTemp = styled.form`
+export const ContainerTemp = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
     width: 300px;
     background: #3331;//3331
     overflow: hidden;
-    min-height: 190px;
+    min-height: 80px;
     border: 2px solid ${WHITEL};
     
 `;
@@ -103,7 +102,7 @@ export const Submit = styled.input`
     }
 `;
 
-export const BottomReturn = styled(Link)`
+export const BottomReturn = styled.a`
     box-sizing: border-box;
     background-color: ${RED};
     margin: 20px;
@@ -118,4 +117,8 @@ export const BottomReturn = styled(Link)`
     &:hover{
         color: #333;
     }
+`;
+
+export const Error = styled.p`
+    color:${RED}
 `;

@@ -2,8 +2,10 @@ import React from 'react';
 import {useEffect, useState} from 'react'
 import { getGenre} from '../../redux/actions';
 import { useDispatch,useSelector } from 'react-redux';
+import {plataformsArray} from '../VariableSC';
 
-import {Container,BottomReturn,ContainerForm,Form,ContainerTemp,TempShow,TempName,DeleteTemp,Submit} from './VideogameForm'
+
+import {Container,BottomReturn,ContainerForm,Form,ContainerTemp,TempShow,TempName,DeleteTemp,Submit,Error} from './VideogameForm'
 
 const validate = values =>{
     const errors ={}
@@ -11,7 +13,7 @@ const validate = values =>{
     if(!values.name){
         errors.name = 'This field is required';
     }else{
-        if(values.name.length<5 || values.name.length>15){
+        if(values.name.length<5 || values.name.length>16){
             errors.name = 'The data is invalid';
         }
     }
@@ -34,8 +36,12 @@ const validate = values =>{
         }
     }
 
-    if(!values.platforms){
+    if(values.plataforms.length<1){
         errors.platforms = 'This field is required';
+    }else{
+        if(values.plataforms.length>5){
+            errors.platforms = 'The maximum is 5';
+        }
     }
 
     if(!values.rating){
@@ -52,7 +58,6 @@ const validate = values =>{
         if(values.genre.length>3){
             errors.genre = 'The maximum is 3';
         }
-            
     }
     
     return errors;
@@ -67,9 +72,9 @@ function VideogameForm (){
         genreShow: []
     }
 
-    const [state,setState] = useState({errors:{},genre:[]});
+    const [state,setState] = useState({errors:{},genre:[],plataforms:[]});
     const [genreShow, setGenreShow] = useState(initialGenre);
-
+    const [showPlataforms,setShowPlataforms] = useState({plataforms:[]})
     const [submitComp,setSumbit] = useState(false);
 
     useEffect(()=>{
@@ -138,6 +143,35 @@ function VideogameForm (){
         
     }
 
+    const selectPlataforms =({target})=>{
+        const {value,name} =target;
+        if(!state.plataforms.includes(value)){
+            setState({...state,plataforms:[...state.plataforms,value]})
+            setShowPlataforms({
+                ...showPlataforms,
+                plataforms:[...showPlataforms.plataforms,value]
+            });
+            
+        }else{
+            //is repeated
+        }
+        
+    }
+    const deletePlataforms = (e)=>{
+        e.preventDefault();
+        
+        const {value,name} =e.target;        
+        setShowPlataforms({
+            ...showPlataforms,
+            plataforms:showPlataforms.plataforms.filter(elem => elem.toLowerCase() !== value.toLowerCase())
+        })
+        setState({
+            ...state,
+            plataforms: state.plataforms.filter(e => e.toLowerCase() !== value.toLowerCase() )
+        });
+        
+    }
+
 
     const deleteGenre = (e)=>{
         e.preventDefault();
@@ -157,7 +191,6 @@ function VideogameForm (){
     }
       
     const {errors} = state;
-
     return(
             <Container>
         {
@@ -168,13 +201,13 @@ function VideogameForm (){
                     <div>
                         <label>Name: </label>
                         <input name='name' onChange={handleChange}/>
-                        {errors.name? <p>{errors.name}</p>:<p> </p>}
+                        {errors.name? <Error>{errors.name}</Error>:<Error/>}
                         
                     </div>
                     <div>
                         <label>Description: </label>
                         <input type='text' name='description' onChange={handleChange} />
-                        {errors.description? <p>{errors.description}</p>:<p> </p>}
+                        {errors.description? <Error>{errors.description}</Error>:<Error> </Error>}
 
                     </div>
                     <div>
@@ -185,23 +218,41 @@ function VideogameForm (){
                     <div>
                         <label>Realease_Date: </label>
                         <input type="date" name='release_date' onChange={handleChange} />
-                        {errors.release_date? <p>{errors.release_date}</p>:<p> </p>}
+                        {errors.release_date? <Error>{errors.release_date}</Error>:<Error> </Error>}
 
                     </div>
                     <div>
                         <label>Rating: </label>
                         <input type="number" name='rating' onChange={handleChange}/>
-                        {errors.rating?  <p>{errors.rating}</p>:<p> </p>}
+                        {errors.rating?  <Error>{errors.rating}</Error>:<Error> </Error>}
 
                     </div>
                     <div>
                         <label>Plataforms: </label>
-                        <input type="text" name='platforms' onChange={handleChange}/>
-                        {errors.platforms? <p>{errors.platforms}</p>:<p> </p>}
+                        <select name="plataforms"  onChange={selectPlataforms}>
+                            <option disabled selected>select</option>                   
+                            {plataformsArray && plataformsArray?.map((e,i)=>{
+                                return <option key={i} value={e} label={e}/>
+                                }) 
+                            }
+                            
+                        </select>
+                        {/* <input type="text" name='platforms' onChange={handleChange}/> */}
+                        {errors.platforms? <Error>{errors.platforms}</Error>:<Error> </Error>}
+                        <ContainerTemp> 
+                        {showPlataforms?.plataforms?.map(e =>(
+                            <TempShow key ={e}>
+                                <TempName >{e}</TempName>
+                                <DeleteTemp 
+                                onClick={deletePlataforms}
+                                value={e}>X</DeleteTemp>
+                            </TempShow>
+                            ))}
+                        </ContainerTemp>
 
                     </div>
                     <div>
-                        <label>Filter By:</label>
+                        <label>Genres:</label>
                         <select name='selectFilter' onChange={selectGenres}  >
                             <option disabled selected>select</option>                   
                             { genres && genres.map( (g)=>{
@@ -211,7 +262,7 @@ function VideogameForm (){
                             })}
                         </select>
                     </div>
-                    {errors.genre? <p>{errors.genre}</p>:<p> </p>}
+                    {errors.genre? <Error>{errors.genre}</Error>:<Error> </Error>}
                     <ContainerTemp> 
                         {genreShow?.genreShow?.map(e =>(
                         <TempShow key ={e}>
@@ -230,7 +281,7 @@ function VideogameForm (){
             
             :<ContainerForm>
                 <p>Game added successfully!</p>
-                <BottomReturn to={'/Api'}>Back to Home</BottomReturn>
+                <BottomReturn href={'/Api'}>Back to Home</BottomReturn>
             </ContainerForm>
     }
             </Container>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {RED,DARK,DARKL,WHITE} from '../VariableSC';
+import {RED,DARK,WHITE} from '../VariableSC';
 import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
@@ -15,15 +15,25 @@ export const Container = styled.div`
 `;
 
 export const Name  = styled.h2`
-    height: 60px;
+    height: 70px;
     overflow: hidden;
     margin:0px;
+    padding-top: 5px;
 `;
 
 export const ContainerAll = styled.div`
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content:center ;
+    align-items:center;
+    height: 98%;
 `;
+
+
 export const Text = styled.p`
     height: 40px;
+    margin: 10px;
     overflow: hidden;
 `;
 
@@ -32,11 +42,27 @@ export const Img = styled.img`
     height: 250px;
 `;
 
+export const References = styled.h3`
+    height: 25px;    
+    overflow: hidden;
+    font-size: 15px;
+    margin: 0px;
+    padding: 0px;
+`;
+
+export const Reference = styled.h3`
+    height: 25px;    
+    overflow: hidden;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 0px;
+`;
+
 export const Button  = styled(Link)`
     box-sizing: border-box;
     background: ${RED};
-    margin: 1px;
-    height: 50px;
+    margin-top: 5px;
+    height: 30px;
     color: #fffffe;
     padding: 4px 5px;
     text-align: center;

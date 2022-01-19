@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import {Button, Span,Container,Text,Title} from './LandingPage'
 

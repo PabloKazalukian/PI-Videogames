@@ -1,4 +1,4 @@
-import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,FILTER_DB,GET_GENRE,FILTER_GENRE,GET_VIDEOGAMES} from '../actions/index';
+import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,FILTER_DB,GET_GENRE,FILTER_GENRE,FILTER_PLATFORMS} from '../actions/index';
 
 let initalState={
     videogame:[],
@@ -12,11 +12,12 @@ export default function rootReducer(state=initalState,action){
 
     switch(action.type){
         case GET_VIDEOGAME:
-            if(state.complete){
-                return{...state,
-                    videogameFilter:state.videogame
-                }
-            }else{
+            // if(state.complete){
+            //     return{...state,
+            //         videogameFilter:state.videogame
+            //     }
+            // }
+            // else{
                 return{
                     ...state,
                     videogame: action.payload,
@@ -24,7 +25,7 @@ export default function rootReducer(state=initalState,action){
                     error:false,
                     complete:true
                 }
-            }
+            // }
         case GET_GENRE:
             return{ ...state,genres:action.payload}
         case GET_VIDEOGAME_NAME:
@@ -126,6 +127,32 @@ export default function rootReducer(state=initalState,action){
                 }
 
             }
+
+        case FILTER_PLATFORMS:
+        let filterPlatforms=[...state.videogame];
+        // platforms
+        if(action.payload !==''){
+            filterPlatforms = filterPlatforms.filter((e)=>{
+                if (e.platforms?.includes(action.payload)){
+                    return e;
+                }                
+            });
+        }
+        if(filterPlatforms.length>=1){
+            return{
+                ...state,
+                videogameFilter: filterPlatforms,
+                error:false
+            }
+        } else{
+            console.log(action.payload);
+            return{
+                ...state,
+                videogameFilter: filterPlatforms,
+                error: true,
+            }
+
+        }
         default:
             return state;
     }

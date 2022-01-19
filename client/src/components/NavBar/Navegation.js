@@ -105,13 +105,3 @@ export const Linb = styled.a`
         color: #333;
     }
 `
-export const Lupa = styled.div`
-    background:transparent;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    color: ${DARK};
-    position: absolute;
-    top:40%;
-    left:66%;
-`

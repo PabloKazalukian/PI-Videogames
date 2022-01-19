@@ -7,7 +7,9 @@ export const GET_VIDEOGAMES= 'GET_VIDEOGAMES';
 export const GET_VIDEOGAME_NAME= 'GET_VIDEOGAME_NAME';
 export const FILTER_GENRE = 'FILTER_GENRE';
 export const FILTER_DB = 'FILTER_DB';
+export const FILTER_PLATFORMS = 'FILTER_PLATFORMS';
 export const GET_GENRE = 'GET_GENRE';
+
 
 
 
@@ -89,6 +91,14 @@ export const filterDb = (db) => {
 
 }
 
+export const filterPlatforms = (platforms) => {
+    
+    return {
+        type: FILTER_PLATFORMS,
+        payload: platforms,
+    }
+
+}
 export const filterGenre = (genre) => {
     
     return {

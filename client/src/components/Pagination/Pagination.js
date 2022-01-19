@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {RED,DARK} from '../VariableSC';
+import {DARK} from '../VariableSC';
 
 
 export const ContainerNav = styled.nav`

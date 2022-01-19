@@ -6,6 +6,7 @@ import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Loading from "../Loading/Loading.jsx";
+import Error from "../Error404/Error404"
 
 
 import {Container,ContainerCards} from './Videogame';
@@ -17,6 +18,7 @@ function Videogame(){
     const [loading,setLoading] = useState((false));//controlador del loading
     const [currentPage,setCurrentPage] = useState(1);//pagina actual
     const [cantPage,setCantPage] = useState(15);//cantidad de paginas
+    const [howShow,setHowShow]= useState(true);//true genres,false platforms
 
 
     const dispatch = useDispatch();
@@ -28,15 +30,17 @@ function Videogame(){
     useEffect(()=>{
         if(!err){
             setLoading(false);
-            if(complete){
-                dispatch(getComplete());
+            // if(complete){
+            //     dispatch(getComplete());
                 
-            }else{
-                dispatch(getVideogame());
-            }
+            // }else{
+            dispatch(getVideogame());
+            // }
             setTimeout(() => {
                 setLoading(true);
-            }, 2000);  
+            }, 600);  
+        }else{
+            console.log('error, is empety ')
         }
     },[])
 
@@ -49,12 +53,28 @@ function Videogame(){
             setCurrentPage(1);
             setTimeout(() => {
                 setLoading(true);
-            }, 1200);
+            }, 400);
+        }else{
+            console.log('error, is empety ')
         }
             
     },[videogameFilter])
     //end useEffects
 
+
+    //Is for send like a props to button in Error
+    const refresh = ()=>{
+        
+        if(complete){
+                dispatch(getComplete());
+        }else{
+                dispatch(getVideogame());
+        }
+        setLoading(false);
+        dispatch(getVideogame());
+        setLoading(true);
+
+    }
     
 
     //1 * 8 , 8 - 8 , slice (0 , 8) case 1
@@ -63,15 +83,25 @@ function Videogame(){
     const indexOfFirstPage = indexOfLastPage - cantPage;
     const currentPost = page.slice(indexOfFirstPage,indexOfLastPage);
     
+    
     // function Change page
     const paginate = pageNumber => setCurrentPage(pageNumber);
+
+
+
+    //Es para manda una funcion a filter y que alli pueda, por clousers,
+    //cambiar el estado  que se manda a cada CardVideogame y saber que mostar
+    //if show Genres or Platsforms
+    const howShowFunc = (how)=>{
+        setHowShow(how);
+    }
     
     return(
         <>
         {loading?
             <Container>
                 
-                <Filters/>
+                <Filters howShow={howShowFunc}/>
                 {!err?
                     <>
 
@@ -87,7 +117,9 @@ function Videogame(){
                                     name={game.name}
                                     images={game.image}
                                     genres={game.genres}
+                                    platforms={game.platforms}
                                     rating={game.rating}
+                                    howShow={howShow}
                                     key={game.id}
                                     id={game.id}
                                     />
@@ -97,7 +129,8 @@ function Videogame(){
                         </>
                     </>
                 
-                :<div><h2>Error</h2></div>
+                :<Error clear={true} refresh={refresh}/>
+                // :<div><h2>Eorr</h2></div>
                 }
 
             </Container>

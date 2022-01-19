@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {DARK} from '../VariableSC';
-import { Link } from 'react-router-dom';
+import {DARKL,WHITEL} from '../VariableSC';
 import { keyframes } from "styled-components";
 
 
@@ -29,6 +28,7 @@ export const Container = styled.div`
     margin: 0px;
     min-height: 92vh;
     overflow: hidden;
+    
 `;
 
 export const ContainerDetail = styled.div`
@@ -49,7 +49,12 @@ export const Img = styled.img`
 `;
 
 export const ContainerRest = styled.div`
-    padding: 0px 80px;
+    margin: 0px 80px 20px 80px;
+    padding: 50px 80px 0px 80px;
+    border: 1px solid ${WHITEL};
+    background:${DARKL};
+    backdrop-filter:blur(5px);
+    border-radius: 0px 0px 12px 12px;
 `;
 
 export const Description = styled.p`

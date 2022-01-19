@@ -1,22 +1,39 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
-import {Container,ContainerAll,Name,Button,Img,Text} from './CardVideogame.js';
+import {Container,ContainerAll,Name,Button,Img,Text,Reference,References} from './CardVideogame.js';
 
 function CardVideogame(props){
 
+
+    //Defaulr Images generator
+    let imggs=`https://pbs.twimg.com/media/FC891KzUUAIhbGP?format=jpg&name=large`; 
+    if(props.images?.length > 32){
+        imggs = props.images;
+    } 
     
     return(
         <Container>
             <ContainerAll>
-                <Img src={props.images} 
+                <Img src={imggs} 
                     alt={props.name}
+                    
                     />
                 <Name>{props.name}</Name>
-                <Text>{props.genres?.map(g=>{
-                    return g.name
-                }).join(', ')}</Text>
-                <p>Rating: {props.rating}</p>
+                {props.howShow?
+                    <>
+                    <Reference>Genres:</Reference>
+                    <Text>{props.genres?.map(g=>{
+                        return g.name
+                    }).join(', ')}</Text>
+                    </>
+                    :<><Reference>Platforms:</Reference>
+                    <Text>{props.platforms}</Text>
+                    </>
+                
+                }
+                
+
+                <References>Rating: {props.rating}</References>
                 <Button to={`/Api/search/${props.id}`}>Detail</Button>
             </ContainerAll>
         </Container>

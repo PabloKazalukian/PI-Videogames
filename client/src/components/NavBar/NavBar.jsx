@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useDispatch} from "react-redux";
 import { useLocation  } from "react-router";
 import {searchVideogame,getVideogame} from '../../redux/actions';
-import {Lin,NaviBar,SearchBar,NavUl,Linb,InputBar,ButtonBar,Lupa} from './Navegation.js';
-import {HiSearch} from 'react-icons/hi';
+import {Lin,NaviBar,SearchBar,NavUl,Linb,InputBar,ButtonBar} from './Navegation.js';
 
 
 
@@ -53,7 +52,6 @@ export default function NavBar(){
                                 value={state.gameSearch}
                                 type="search" />
                             <ButtonBar type="submit" value='Search'/>
-                            <Lupa><HiSearch/></Lupa>
                             
                         </SearchBar>
                         : <p/> 
