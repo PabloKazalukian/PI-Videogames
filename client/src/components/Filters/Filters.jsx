@@ -5,7 +5,7 @@ import { useDispatch,useSelector } from "react-redux";
 import {plataformsArray} from '../VariableSC';
 
 
-import {Container,ContainerFilter,ShowFilter,ContainerSort,Sort,Filter,FilterBy,ButtonFilter,ButtonClear} from './Filters.js'
+import {Container,ContainerFilter,ShowFilter,ContainerSort,Sort,Filter,FilterBy,ButtonFilter,ButtonClear,ButtonFilterDB} from './Filters.js'
 
 
 function Filters (props){
@@ -47,24 +47,30 @@ function Filters (props){
         const {value} = e.target;
         setState({...state,filter:value})
         setStateP({...state,filter:''})
-        dispatch(filterGenre(value));
-        props.howShow(true);
+
     }
 
     function filterGenres(){
         const {filter} = state;
+        const filterPlat = stateP.filter
         // dispatch(getComplete());
         
         if(filter){
             dispatch(filterGenre(filter));
             props.howShow(true);
+        }else{
+            if(filterPlat){
+                dispatch(filterPlatforms(filterPlat));
+                props.howShow(false);
+            }else{
+                //Nothing
+            }
         }
     }
     
     function changePlataforms({target}){
         const {value}=target;
-        dispatch(filterPlatforms(value));
-        props.howShow(false);
+
         setState({...state,filter:''})
         setStateP({...state,filter:value})
     }
@@ -78,7 +84,18 @@ function Filters (props){
     function filterDB(e){
         const {value} = e.target;
         dispatch(filterDb(value));
-        props.howShow(true)
+        // props.howShow(true);
+
+    }
+
+    function shows ({target}){
+        const {value} = target;
+        if(value === 'Genres'){
+            props.howShow(true);
+        }else{
+            props.howShow(false);
+        }
+
 
     }
     //end Selection
@@ -87,66 +104,60 @@ function Filters (props){
     return(
 
         <Container>
-
-            {
                 
-                <ContainerFilter>
-                    <Filter>
-                        <FilterBy>Filter DB/API:</FilterBy>
-                        <ButtonFilter value={'DB'} onClick={filterDB}>
-                            Filter DB
-                        </ButtonFilter>
-                        <ButtonFilter value={'API'} onClick={filterDB}>
-                            Filter API
-                        </ButtonFilter>
-                    </Filter>
-                    <Filter>
-                        <FilterBy>Filter by Platforms:</FilterBy>
-                        <select name="plataforms"  onChange={changePlataforms}>
-                                <option disabled selected>select</option>                   
-                                {plataformsArray && plataformsArray?.map((e,i)=>{
-                                    return <option key={i} value={e} label={e}/>
-                                    }) 
-                                }                            
-                        </select>
-                        <ShowFilter>{stateP.filter}</ShowFilter>
+            <ContainerFilter>
+                <Filter>
+                    <FilterBy>Filter DB/API:</FilterBy>
+                    <ButtonFilterDB value={'DB'} onClick={filterDB}>
+                        Filter DB
+                    </ButtonFilterDB>
+                    <ButtonFilterDB value={'API'} onClick={filterDB}>
+                        Filter API
+                    </ButtonFilterDB>
+                </Filter>
+                <Filter>
+                    <FilterBy>Filter by Platforms:</FilterBy>
+                    <select name="plataforms"  onChange={changePlataforms}>
+                            <option disabled selected>select</option>                   
+                            {plataformsArray && plataformsArray?.map((e,i)=>{
+                                return <option key={i} value={e} label={e}/>
+                                }) 
+                            }                            
+                    </select>
+                    <ShowFilter>{stateP.filter}</ShowFilter>
 
-                    </Filter>
-                    <Filter>
-                        <div>
-                            <FilterBy>Filter By Genres:</FilterBy>
-                            <select name='selectFilter' onChange={changeGenre}  >
-                                <option disabled selected>select</option>
-                                {/* <option value='all'label={'all Genres'}/> */}
+                </Filter>
+                <Filter>
+                    <div>
+                        <FilterBy>Filter By Genres:</FilterBy>
+                        <select name='selectFilter' onChange={changeGenre}  >
+                            <option disabled selected>select</option>
+                            {/* <option value='all'label={'all Genres'}/> */}
+                            
+                            { genres && genres.map( (g)=>{
+
+                                return <option key={g.id} value={g.name} label={g.name}/>
                                 
-                                { genres && genres.map( (g)=>{
-
-                                    return <option key={g.id} value={g.name} label={g.name}/>
-                                    
-                                })}
-                            </select>
-                            <ShowFilter>{state.filter}</ShowFilter>
-                        </div>
-                        {/* <div>
-                            <ButtonFilter onClick={filterGenres}>
-                                Filter
-                            </ButtonFilter>
-                        </div> */}
-                    </Filter>
-                    
-                   
-                    
-                    
-                    
-                    {/* <select name='select' onChange={filterDB} >
+                            })}
+                        </select>
+                        <ShowFilter>{state.filter}</ShowFilter>
+                    </div>
+                </Filter>
+                
+                <Filter>
+                    <FilterBy>Show Genres/Platforms:</FilterBy>
+                        {/* <ButtonFilterDB value={'Genres'} onClick={shows}>
+                            Show Genres
+                        </ButtonFilterDB>
+                        <ButtonFilterDB value={'Platforms'} onClick={shows}>
+                            Show platforms
+                        </ButtonFilterDB> */}
+                    <select name='select' onChange={shows} >
                         <option disabled selected>select</option>
-                        <option value="DB" label='Data Base'></option>
-                        <option value="API" label='API'></option>
-                    </select> */}
-
-                </ContainerFilter>
-            }
-            <ContainerSort>
+                        <option value="Genres" label='Show Genres'></option>
+                        <option value="Platforms" label='Show platforms'></option>
+                    </select>
+                </Filter>
                 <Sort>
                     <p>Sort by alphabet:</p>
                     <select name='select' onChange={selectionChange} >
@@ -161,10 +172,13 @@ function Filters (props){
                         <option disabled selected>select</option>
                         <option value="ascendente" label='5-0'></option>
                         <option value="descendente" label='0-5'></option>
-                    </select>
+                 </select>
                 </Sort>
-            </ContainerSort>
-            <ButtonClear onClick={clearGenres}>Clear All</ButtonClear>
+                
+                <ButtonFilter onClick={filterGenres}>Filter</ButtonFilter>
+                <ButtonClear onClick={clearGenres}>Clear All</ButtonClear>
+            </ContainerFilter>
+
         </Container>
     )
 }

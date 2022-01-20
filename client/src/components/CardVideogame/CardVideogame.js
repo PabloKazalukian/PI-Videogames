@@ -30,9 +30,8 @@ export const ContainerAll = styled.div`
     height: 98%;
 `;
 
-
 export const Text = styled.p`
-    height: 40px;
+    height: 44px;
     margin: 10px;
     overflow: hidden;
 `;

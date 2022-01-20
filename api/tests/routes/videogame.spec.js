@@ -37,13 +37,13 @@ const videoGame = {
   release_date: '2020-12-10',
   image: 'https://unaImagen.com.ar',
   rating: 2,
-  platforms:'Xbox, Playstation 2',
+  platforms:'Xbox One, PlayStation 2',
 };
 const videoGame2 = {
   name: 'Perrito Malvado',
   description: 'descripcion del juego',
   rating: 2,
-  platforms:'Xbox, Playstation 2',
+  platforms:'Xbox One, PlayStation 2',
 };
 const Videogamei={}
 
@@ -58,17 +58,17 @@ describe('Videogame ', () => {
     describe(' /Videogames',()=>{
       it('should get 200', () =>{
         return agent.get('/videogames').expect(200)
-      }).timeout(10000)
+      }).timeout(12000)
       it('all the Videogames should be',()=>{
         return agent.get('/videogames').expect(e => expect(e.body.length>1).equal(true))
-      }).timeout(10000)
+      }).timeout(12000)
       it('the created Videogame should be added',  function() {
         return agent 
           .get('/videogames') 
           .expect((res)=> {
             return expect(res.body[res.body.length-1]).contain(videoGame); 
           });
-      }).timeout(10000)
+      }).timeout(12000)
       describe(' Query name',()=>{
         it('should search by query',()=>{
           return agent
@@ -77,9 +77,9 @@ describe('Videogame ', () => {
             return expect(r.body.length>3).equal(true);
           })
         })        
-      }).timeout(10000)
+      }).timeout(20000)
     })
-  }).timeout(20000);
+  }).timeout(28000);
 
   describe(' Videogames/:idVideogame', () => {
     beforeEach(() => Videogame.sync({ force: true })

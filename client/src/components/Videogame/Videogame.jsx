@@ -65,12 +65,12 @@ function Videogame(){
     //Is for send like a props to button in Error
     const refresh = ()=>{
         
+        setLoading(false);
         if(complete){
                 dispatch(getComplete());
         }else{
                 dispatch(getVideogame());
         }
-        setLoading(false);
         dispatch(getVideogame());
         setLoading(true);
 
