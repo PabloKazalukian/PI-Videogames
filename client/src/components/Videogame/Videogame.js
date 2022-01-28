@@ -16,3 +16,8 @@ export const ContainerCards = styled.div`
     overflow: hidden;
     gap: 15px;
 `;
+
+export const Total = styled.div`
+    min-height: 110vh;
+    position: relative;
+`;

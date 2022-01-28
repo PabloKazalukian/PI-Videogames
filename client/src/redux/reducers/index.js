@@ -1,4 +1,4 @@
-import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,FILTER_DB,GET_GENRE,FILTER_GENRE,FILTER_PLATFORMS} from '../actions/index';
+import {GET_VIDEOGAME,SORT_RATING,SORT,GET_VIDEOGAME_NAME,FILTER_RATING,FILTER_DB,GET_GENRE,FILTER_GENRE,FILTER_PLATFORMS} from '../actions/index';
 
 let initalState={
     videogame:[],
@@ -149,6 +149,28 @@ export default function rootReducer(state=initalState,action){
             return{
                 ...state,
                 videogameFilter: filterPlatforms,
+                error: true,
+            }
+
+        }
+        case FILTER_RATING:
+        let filterRating=[...state.videogame];
+        
+        filterRating = filterRating.filter((e)=>{
+            if (parseInt(e.rating,10) < 4){
+                return e;
+            }                
+        });
+        if(filterRating.length>=1){
+            return{
+                ...state,
+                videogameFilter: filterRating,
+                error:false
+            }
+        } else{
+            return{
+                ...state,
+                videogameFilter: filterRating,
                 error: true,
             }
 

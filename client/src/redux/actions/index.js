@@ -9,10 +9,18 @@ export const FILTER_GENRE = 'FILTER_GENRE';
 export const FILTER_DB = 'FILTER_DB';
 export const FILTER_PLATFORMS = 'FILTER_PLATFORMS';
 export const GET_GENRE = 'GET_GENRE';
+export const FILTER_RATING = 'FILTER_RATING';
 
 
 
 
+export const filterRat = () =>{
+    //alphabetical
+    return {
+        type: FILTER_RATING,
+        payload: '',
+    }
+}
 
 export const getVideogame= ()=>{
     return  function(dispatch){

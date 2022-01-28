@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useLocation  } from "react-router";
-import {getGenre,sort,sortRating,filterGenre,filterDb,filterPlatforms} from '../../redux/actions'
+import {getGenre,sort,sortRating,filterGenre,filterDb,filterRat,filterPlatforms} from '../../redux/actions'
 import { useDispatch,useSelector } from "react-redux";
 import {plataformsArray} from '../VariableSC';
 
 
-import {Container,ContainerFilter,ShowFilter,ContainerSort,Sort,Filter,FilterBy,ButtonFilter,ButtonClear,ButtonFilterDB} from './Filters.js'
+import {Container,ContainerFilter,ShowFilter,ContainerSort,Sort,Filter,FilterBy,ButtonFilter,ButtonClear,ButtonFilterDB,ButtonRating} from './Filters.js'
 
 
 function Filters (props){
@@ -86,6 +86,9 @@ function Filters (props){
         dispatch(filterDb(value));
         // props.howShow(true);
 
+    }
+    function filterRating(){
+        dispatch(filterRat());        
     }
 
     function shows ({target}){
@@ -174,7 +177,8 @@ function Filters (props){
                         <option value="descendente" label='0-5'></option>
                  </select>
                 </Sort>
-                
+
+                {/* <ButtonRating onClick={filterRating}>Filter Rating</ButtonRating> */}
                 <ButtonFilter onClick={filterGenres}>Filter</ButtonFilter>
                 <ButtonClear onClick={clearGenres}>Clear All</ButtonClear>
             </ContainerFilter>

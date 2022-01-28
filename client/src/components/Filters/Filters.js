@@ -56,6 +56,7 @@ export const ContainerFilter = styled.div`
 
 `;
 
+
 // export const ContainerSort = styled.div`
 //     box-sizing: border-box;
 //     display: flex;
@@ -157,6 +158,30 @@ export const ButtonFilterDB = styled.button`
     &:hover{
         color:${WHITE};
         background:${RED};
+    }
+`;
+
+export const ButtonRating = styled.button`
+    box-sizing: border-box;
+    background-color: ${RED};
+    position: absolute;
+    top: 86%;
+    left: 80%;
+    margin: 5px;
+    height: 50px;
+    color: #fffffe;
+    padding: 10px 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight:700;
+    border: none;
+    border-radius:3px;
+    letter-spacing: 1.7px;
+    cursor: pointer;
+    transition: .2s all;
+    &:hover{
+        color:${RED};
+        background:${WHITE};
     }
 `;
 

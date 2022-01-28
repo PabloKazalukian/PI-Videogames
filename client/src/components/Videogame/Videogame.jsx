@@ -6,10 +6,10 @@ import Pagination from "../Pagination/Pagination.jsx";
 import CardVideogame from "../CardVideogame/CardVideogame.jsx";
 import Filters from "../Filters/Filters.jsx";
 import Loading from "../Loading/Loading.jsx";
-import Error from "../Error404/Error404"
+import Error from "../Error404/Error404";
+import Footer from "../Footer/Footer.jsx";
 
-
-import {Container,ContainerCards} from './Videogame';
+import {Container,ContainerCards,Total} from './Videogame';
 
 function Videogame(){
 
@@ -19,7 +19,6 @@ function Videogame(){
     const [currentPage,setCurrentPage] = useState(1);//pagina actual
     const [cantPage,setCantPage] = useState(15);//cantidad de paginas
     const [howShow,setHowShow]= useState(true);//true genres,false platforms
-
 
     const dispatch = useDispatch();
     const videogameFilter = useSelector(state => state.videogameFilter);
@@ -38,7 +37,7 @@ function Videogame(){
             // }
             setTimeout(() => {
                 setLoading(true);
-            }, 600);  
+            }, 600);
         }else{
             console.log('error, is empety ')
         }
@@ -53,7 +52,7 @@ function Videogame(){
             setCurrentPage(1);
             setTimeout(() => {
                 setLoading(true);
-            }, 400);
+            }, 400);            
         }else{
             console.log('error, is empety ')
         }
@@ -97,7 +96,7 @@ function Videogame(){
     }
     
     return(
-        <>
+        <Total>
         {loading?
             <Container>
                 
@@ -113,31 +112,32 @@ function Videogame(){
                         <>
                             <ContainerCards>
                             { !currentPost?.length<1? currentPost?.map((game)=>{
-                                    return <CardVideogame
-                                    name={game.name}
-                                    images={game.image}
-                                    genres={game.genres}
-                                    platforms={game.platforms}
-                                    rating={game.rating}
-                                    howShow={howShow}
-                                    key={game.id}
-                                    id={game.id}
+                                return <CardVideogame
+                                name={game.name}
+                                images={game.image}
+                                genres={game.genres}
+                                platforms={game.platforms}
+                                rating={game.rating}
+                                howShow={howShow}
+                                key={game.id}
+                                id={game.id}
                                     />
                                 })
-                            :<Loading/>}
+                                :<Loading/>}
+                                
                             </ContainerCards>
                         </>
                     </>
                 
                 :<Error clear={true} refresh={refresh}/>
                 // :<div><h2>Eorr</h2></div>
-                }
-
+            }
+                <Footer/>
             </Container>
         :<Loading/>}
                             
         
-        </>
+        </Total>
     )
 
 }
