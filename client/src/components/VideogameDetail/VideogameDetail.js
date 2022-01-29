@@ -58,7 +58,9 @@ export const ContainerRest = styled.div`
 `;
 
 export const Description = styled.p`
-    
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin: 0px;
 `;
 
 export const Name = styled.h1`

@@ -119,7 +119,7 @@ function VideogameForm (){
             addGame(state);
             setSumbit(true);
         }
-        //falta validar
+        //not validate
 
     }
 
@@ -191,6 +191,7 @@ function VideogameForm (){
     }
       
     const {errors} = state;
+
     return(
             <Container>
         {
@@ -211,10 +212,11 @@ function VideogameForm (){
 
                     </div>
                     <div>
-                        <label>Imagen: </label>
+                        <label>Image: </label>
                         <input type='text' name='image' onChange={handleChange} />
 
                     </div>
+                        <br/>
                     <div>
                         <label>Realease_Date: </label>
                         <input type="date" name='release_date' onChange={handleChange} />
@@ -237,7 +239,6 @@ function VideogameForm (){
                             }
                             
                         </select>
-                        {/* <input type="text" name='platforms' onChange={handleChange}/> */}
                         {errors.platforms? <Error>{errors.platforms}</Error>:<Error> </Error>}
                         <ContainerTemp> 
                         {showPlataforms?.plataforms?.map(e =>(
@@ -251,6 +252,8 @@ function VideogameForm (){
                         </ContainerTemp>
 
                     </div>
+                    <br/>
+
                     <div>
                         <label>Genres:</label>
                         <select name='selectFilter' onChange={selectGenres}  >
@@ -261,18 +264,18 @@ function VideogameForm (){
                                 
                             })}
                         </select>
+                        {errors.genre? <Error>{errors.genre}</Error>:<Error> </Error>}
+                        <ContainerTemp> 
+                            {genreShow?.genreShow?.map(e =>(
+                            <TempShow key ={e}>
+                                <TempName >{e}</TempName>
+                                <DeleteTemp 
+                                onClick={deleteGenre}
+                                value={e}>X</DeleteTemp>
+                            </TempShow>
+                            ))}
+                        </ContainerTemp>
                     </div>
-                    {errors.genre? <Error>{errors.genre}</Error>:<Error> </Error>}
-                    <ContainerTemp> 
-                        {genreShow?.genreShow?.map(e =>(
-                        <TempShow key ={e}>
-                            <TempName >{e}</TempName>
-                            <DeleteTemp 
-                            onClick={deleteGenre}
-                            value={e}>X</DeleteTemp>
-                        </TempShow>
-                        ))}
-                    </ContainerTemp>
 
 
                     <Submit type='submit' value={'Submit'}></Submit>

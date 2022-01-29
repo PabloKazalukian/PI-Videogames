@@ -51,13 +51,19 @@ function VideogameDetail (){
                         />
                     </ContainerImg>
                     <ContainerRest>
-                        <Description>Description:<br/>{game?.description}</Description>
-                        <p>Genres: <br/>{game?.genres?.map(e=>{
+
+                        <Description>Description:</Description>
+                        <p>{game?.description.replace(/<[^>]*>?/g, '')}</p>
+                        <Description>Genres:</Description>
+                        <p>{game?.genres?.map(e=>{
                             return e.name
                         }).join(', ')}</p>
-                        <p>Plataforms: <br/>{game?.platforms}</p>
-                        <p>Rating: <br/>{game?.rating}</p>
-                        <p>Release_date: <br/>{game?.release_date}</p>
+                        <Description>Plataforms:</Description>
+                        <p> {game?.platforms}</p>
+                        <Description>Rating:</Description>
+                        <p> {game?.rating}</p>
+                        <Description>Release_date:</Description>
+                        <p> {game?.release_date}</p>
                     </ContainerRest>
                 </ContainerDetail>
                 :<Error/>

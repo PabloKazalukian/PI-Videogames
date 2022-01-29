@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const ContainerForm = styled.div`
     margin: 10px;
     width: 500px;
+    min-height: 60px;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -20,35 +21,74 @@ export const ContainerForm = styled.div`
     backdrop-filter:blur(5px);
     border-radius: 12px;
     
+    
 `;
+
+
+
+export const Form = styled.form`
+    border:1px solid ${WHITE};
+    padding: 25px;
+    min-height: 608px;
+    width: 80%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    & > div{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    & div input{        
+        width: 190px;
+        margin:0px 30px ;
+        cursor: pointer;
+        letter-spacing: 1px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+        font-size: .9rem;
+        padding: 2px;
+    }
+    & div select{
+        padding: 2px;
+        cursor: pointer;
+        width: 194px;
+        margin:0px 30px ;
+        letter-spacing: 1px;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+        font-size: .9rem;
+        border:1px transparent;
+        border-radius: 2px;
+        background:#d8eefe;
+        color: #dd4565;
+    }
+    & label{
+        width: 120px;
+        letter-spacing: 2px;
+    }
+`;
+
 export const ContainerTemp = styled.div`
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    width: 300px;
+    width: 365px;
     background: #3331;//3331
     overflow: hidden;
     min-height: 80px;
     border: 2px solid ${WHITEL};
     
 `;
-export const Form = styled.form`
-    border:1px solid ${WHITE};
-    padding: 20px;
-    margin-bottom: 50px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 4px;
-`;
-
-
 export const TempShow = styled.div`    
     color: #fffffe;
     display: flex;
     height:23px;
     min-width: 5px;
     flex-direction: row;
-    box-sizing: border-box;
     border-radius: 5px;
     /* border: 2px solid #ef4565; */
     border: 2px solid ${RED};
@@ -120,5 +160,9 @@ export const BottomReturn = styled.a`
 `;
 
 export const Error = styled.p`
-    color:${RED}
+    margin: 6px 0px;
+    height: 20px;
+    color:${RED};
+    width: 300px;
+
 `;
