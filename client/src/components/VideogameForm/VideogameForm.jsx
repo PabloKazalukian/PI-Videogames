@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import { getGenre} from '../../redux/actions';
 import { useDispatch,useSelector } from 'react-redux';
 import {plataformsArray} from '../VariableSC';
+import axios from 'axios';
 
 
 import {Container,BottomReturn,ContainerForm,Form,ContainerTemp,TempShow,TempName,DeleteTemp,Submit,Error} from './VideogameForm'
@@ -82,16 +83,10 @@ function VideogameForm (){
     },[])
       
     const addGame = (game) =>{
-        return fetch(`http://localhost:3001/videogame`, {
-            method: 'POST',
-            body: JSON.stringify(game),
-            headers:{
-                'Content-Type': 'application/json'},
-            })
-            .then(r => r.json())
+        return axios.post(`/videogame`, game)
             .catch(err=>{
                 setSumbit(false);
-                alert(err);
+                // alert(err);
             })
     }
     

@@ -6,6 +6,7 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px;
 `;
 
 export const ContainerForm = styled.div`
@@ -20,8 +21,11 @@ export const ContainerForm = styled.div`
     background:${DARKL};
     backdrop-filter:blur(5px);
     border-radius: 12px;
-    
-    
+    @media screen and (max-width: 425px) {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+    }
 `;
 
 
@@ -69,6 +73,11 @@ export const Form = styled.form`
     & label{
         width: 120px;
         letter-spacing: 2px;
+    }
+    @media screen and (max-width: 425px) {
+        margin: 0px;
+        height: auto;
+        padding: 0px;
     }
 `;
 

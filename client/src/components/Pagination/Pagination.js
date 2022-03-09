@@ -20,6 +20,9 @@ export const ContainerUl = styled.ul`
     list-style:none;
     gap: 1rem;
     padding: 0px;
+    @media screen and (max-width: 600px) {
+        gap: .3rem
+    }
 `;
 export const ContainerLi = styled.li`
     margin: 0px 5px;

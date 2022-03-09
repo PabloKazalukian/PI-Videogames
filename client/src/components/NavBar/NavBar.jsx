@@ -4,7 +4,9 @@ import { useDispatch} from "react-redux";
 import { useLocation  } from "react-router";
 import {searchVideogame,getVideogame} from '../../redux/actions';
 import {Lin,NaviBar,SearchBar,NavUl,Linb,InputBar,ButtonBar} from './Navegation.js';
+import {AiOutlineMenu} from 'react-icons/ai';
 
+import './NavBarStyle.css'
 
 
 
@@ -36,12 +38,13 @@ export default function NavBar(){
         }
     }
 
+    
 
     return (
         <header className="navBar">
             <NaviBar>
                 <NavUl>
-                                        
+                    <AiOutlineMenu className=" menucito" />                                   
                     <Linb onClick={restart} href={'/Api'}>V-Gamming</Linb>
                     { pathname.toLowerCase() === '/api' ?
                         <SearchBar onSubmit={handleSubmit}>

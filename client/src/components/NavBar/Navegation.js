@@ -36,6 +36,9 @@ export const NavUl = styled.ul`
         & > form{
             display: none;
         }
+        & > a{
+            display: none;
+        }
         &:hover{ 
             height:auto;
             padding-top: 8px;
@@ -43,6 +46,11 @@ export const NavUl = styled.ul`
         }
         &:hover > form{
             display: flex;
+        }
+        &:hover > a{
+            margin-top: 8px;
+            display: flex;
+            justify-content: center;
         }
     }
 `

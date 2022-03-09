@@ -31,6 +31,11 @@ export const Container = styled.div`
             color:${RED};
         }
     }
+    @media screen and (max-width: 440px) {
+        & p{
+            padding: 15px;
+        }
+    }
 `;
 
 export const ContainerIcons = styled.div`
@@ -40,4 +45,6 @@ export const ContainerIcons = styled.div`
         margin-top:12px;
         width: 50px;
     }
+    
+
 `;

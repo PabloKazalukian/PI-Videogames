@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {RED,DARK,DARKL,WHITE,WHITEL} from '../VariableSC';
+import {DARK,WHITE} from '../VariableSC';
 import { keyframes } from "styled-components";
 
 
@@ -26,8 +26,11 @@ const  Animate= keyframes`
 
 export const Container = styled.div`
     padding: 0px 80px;
-    min-height: 110vh;
+    min-height: 125vh;
     position: relative;
+    @media screen and (max-width: 686px) {
+        padding: 0px;
+    }
 `;
 
 export const ContainerText = styled.div`
@@ -36,6 +39,9 @@ export const ContainerText = styled.div`
     padding: 20px 2rem;
     height: auto;
     border-radius: 50px;
+    @media screen and (max-width: 800px) {
+        margin: 5rem 0px;
+    }
 `;
 export const ContainerAllTech = styled.div`
     display:  flex;
@@ -65,6 +71,15 @@ export const ContainerEnd = styled.div`
     margin: 0px 1rem;
 
 `;
+
+export const ContainerTextArea = styled.div`
+    padding: 0px 90px;
+    font-size: 1.3rem;
+    @media screen and (max-width: 560px) {
+        padding: 0px;
+    }
+`;
+
 export const TextEnd = styled.h2`
     font-size: 2rem;
     text-align: center;

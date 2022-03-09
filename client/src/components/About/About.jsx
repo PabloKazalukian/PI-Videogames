@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useLocation  } from "react-router";
-import { Link } from 'react-router-dom';
+import React from "react";
 import Footer from "../Footer/Footer.jsx";
 import html from '../../Assets/html.svg'
 import css from '../../Assets/css.svg'
@@ -12,7 +10,7 @@ import express from '../../Assets/expressjs.svg'
 import postgresql from '../../Assets/postgresql.svg'
 import nodejs from '../../Assets/node.svg'
 
-import {Container,ContainerText,ContainerTech,ContainerAllTech
+import {Container,ContainerText,ContainerTech,ContainerAllTech,ContainerTextArea
     ,ContainerEnd,TextEnd,Title,ImgTech,TitleTech} from './Abaout.js'
 
 
@@ -66,13 +64,16 @@ function Filters (props){
     return (
         <Container>
             <ContainerText>
-                <Title>About <strong>V-Gamming</strong></Title>
-                <p>V-Gaming is a video game app, where you can find more than 600,000 games through the 
-                <a href="https://rawg.io" target="_blank" rel="noopener noreferrer">rawg.io</a> Api that provides the data(This is the reason for slow loading...)</p>
-                {/* <img src="https://progsoft.net/images/rawg-a0000d4d894baa1981be32e163d549bfbb537fb3.jpg" alt="Rawg.io"/> */}
-                <p>The app is an individual project from the Soy Henry bootcamp, in which I studied the Full Stack web developer career.</p>
-                <p>In this project is where I apply all the knowledge learned in the bootcamp, using only React without other libraries in the Front-End, that is, the app is made with 100% css. </p>
-                <p>Use the following technologies:</p>
+                <ContainerTextArea>
+                    <Title>About <strong>V-Gamming</strong></Title>
+                    <p>V-Gaming is a video game app, where you can find more than 600,000 games through the 
+                    <a href="https://rawg.io" target="_blank" rel="noopener noreferrer">rawg.io</a> Api that provides the data(This is the reason for slow loading...)</p>
+                    {/* <img src="https://progsoft.net/images/rawg-a0000d4d894baa1981be32e163d549bfbb537fb3.jpg" alt="Rawg.io"/> */}
+                    <p>The app is an individual project from the Soy Henry bootcamp, in which I studied the Full Stack web developer career.</p>
+                    <p>In this project is where I apply all the knowledge learned in the bootcamp, using only React without other libraries in the Front-End, that is, the app is made with 100% css. </p>
+                    <p>Use the following technologies:</p>
+
+                </ContainerTextArea>
                 <div>
                     <ContainerEnd>
                         <TextEnd>Front-End</TextEnd>

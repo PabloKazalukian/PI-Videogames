@@ -1,3 +1,4 @@
+import axios from 'axios';
 
 // export const  = '';
 export const SORT = 'SORT';
@@ -24,10 +25,9 @@ export const filterRat = () =>{
 
 export const getVideogame= ()=>{
     return  function(dispatch){
-        return fetch(`http://localhost:3001/videogames`)
-        .then(r => r.json())
+        return axios.get(`/videogames`)
         .then(json=>{
-            dispatch({type:GET_VIDEOGAME, payload: json});
+            dispatch({type:GET_VIDEOGAME, payload: json.data});
         })
         .catch(err=>{
             console.log(err);
@@ -46,10 +46,9 @@ export const getComplete = ()=>{
 export const searchVideogame= (name)=>{
     return  function(dispatch){
 
-        return fetch(`http://localhost:3001/videogames?name=${name}`)
-        .then(r => r.json())
+        return axios.get(`/videogames?name=${name}`)
         .then(json=>{
-            dispatch({type:GET_VIDEOGAME_NAME, payload: json});
+            dispatch({type:GET_VIDEOGAME_NAME, payload: json.data});
         })
         .catch(err=>{
             console.log(err);
@@ -118,10 +117,9 @@ export const filterGenre = (genre) => {
 
 export const getGenre= ()=>{
     return function(dispatch){
-        return fetch(`http://localhost:3001/genres`)
-        .then(r => r.json())
+        return axios.get(`/genres`)
         .then(json=>{
-            dispatch({type:GET_GENRE, payload: json});
+            dispatch({type:GET_GENRE, payload: json.data});
         })
         .catch(err=>{
             console.log(err);

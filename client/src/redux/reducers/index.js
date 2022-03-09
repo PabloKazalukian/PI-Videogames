@@ -105,8 +105,10 @@ export default function rootReducer(state=initalState,action){
             
         case FILTER_GENRE:
             let filterGenre=[...state.videogame];
+            console.log(filterGenre)
+            console.log(state.videogame)
             if(action.payload !==''){
-                filterGenre = filterGenre.filter((e)=>{
+                filterGenre = filterGenre?.filter((e)=>{
                     if (e.genres?.find(elem=> elem.name.toLowerCase()===action.payload)){
                         return e;
                     }

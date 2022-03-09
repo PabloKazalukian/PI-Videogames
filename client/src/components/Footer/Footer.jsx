@@ -36,7 +36,8 @@ function Footer (){
                 </a>
             </ContainerIcons>
             <hr />
-            <p> Developed by <a href="https://github.com/PabloKazalukian" target="_blank" rel="noopener noreferrer">Pablo Kazalukian</a></p>
+            <p> Developed by <a href="https://github.com/PabloKazalukian" target="_blank" rel="noopener noreferrer">Pablo Kazalukian</a> | 
+              <a href="/api/about" rel="noopener noreferrer"> About</a> V-Gamming </p>
         </Container>
     )
 

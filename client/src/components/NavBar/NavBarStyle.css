@@ -1,0 +1,12 @@
+.menucito{
+    display: none;
+    font-size: 40px;
+}
+
+@media screen and (max-width: 800px) {
+    .menucito{
+        display: block;
+        width: 100%;
+        justify-content: center;
+    }
+}

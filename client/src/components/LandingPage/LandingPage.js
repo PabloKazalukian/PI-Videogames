@@ -35,6 +35,9 @@ export const Container = styled.div`
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    @media screen and (max-width: 800px) {
+
+    }
     
 `;
 
@@ -54,12 +57,19 @@ export const Title = styled.div`
     /* border:1px solid #ffffff88; */
     
     animation: ${Animate} 2.5s linear infinite ;
+    @media screen and (max-width: 800px) {
+        font-size: 4rem;
+    }
+    @media screen and (max-width: 440px) {
+        font-size: 2rem;
+    }
+    
 `;
 
 export const Button = styled(Link)`
     display: inline-flex;
     position: absolute;
-    top: 650px;
+    top: 80%;
     left: 38%;
     width: 100px;
     min-width: 290px;
@@ -91,6 +101,18 @@ export const Button = styled(Link)`
     /* &:hover::after{
 	    top: 10px;
     } */
+    @media screen and (max-width: 800px) {
+        top: 80%;
+        left: 25%;
+    }
+    @media screen and (max-width: 440px) {
+        top: 80%;
+        left: 15%;
+        width: 60%;
+        min-width: 60%;
+        height: auto;
+
+    }
 `;
 export const Span = styled.span`
     position: relative;
