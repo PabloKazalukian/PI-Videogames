@@ -42,11 +42,10 @@ export default function NavBar(){
             <NaviBar>
                 <NavUl>
                                         
-                    <Linb onClick={restart} href={'/Api'}>V-Gamming </Linb>
+                    <Linb onClick={restart} href={'/Api'}>V-Gamming</Linb>
                     { pathname.toLowerCase() === '/api' ?
                         <SearchBar onSubmit={handleSubmit}>
                             <InputBar 
-                                type="text"
                                 name='gameSearch'
                                 onChange={handleState}
                                 value={state.gameSearch}

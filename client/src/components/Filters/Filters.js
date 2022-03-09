@@ -37,13 +37,14 @@ export const Container = styled.div`
         margin: 0px;
         height: 44px;
     }
+    
     `;
 
 export const ContainerFilter = styled.div`
     box-sizing: border-box;
     display: flex;
     justify-content: space-around;
-    gap: 15px;
+    gap: 5px;
     align-items: flex-start;
     width: 550px;
     margin-bottom: 45px;
@@ -53,7 +54,8 @@ export const ContainerFilter = styled.div`
     width: 100%;
     position: relative;
     border-bottom:1px solid ${WHITEL};
-
+    flex-wrap: wrap;
+    
 `;
 
 
@@ -207,6 +209,14 @@ export const ButtonFilter = styled.button`
         color:${RED};
         background:${WHITE};
     }
+    @media screen and (max-width: 957px) {
+        top: 93%;
+        left: 15%;
+    }
+    @media screen and (max-width: 686px) {
+        top: 95%;
+        left: 15%;
+    }
 `;
 
 export const ButtonClear = styled.button`
@@ -230,5 +240,16 @@ export const ButtonClear = styled.button`
     &:hover{
         color:${RED};
         background:${WHITE};
+    }
+    @media screen and (max-width: 957px) {
+        top: 93%;
+        left: 70%;
+    }
+    @media screen and (max-width: 686px) {
+        top: 95%;
+        left: 60%;
+    }
+    @media screen and (max-width: 320px) {
+        left: 50%;
     }
 `;

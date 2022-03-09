@@ -21,6 +21,7 @@ async function get100Videogame (){
 }
 
 async function getSearchVideogame(name){
+    console.log(API_KEY)
     let videogameApi= await axios.get(`${BASE_URL}games?search=${name}&&key=${API_KEY}`);
     let arr=[...videogameApi.data.results];
     //filter at 15
