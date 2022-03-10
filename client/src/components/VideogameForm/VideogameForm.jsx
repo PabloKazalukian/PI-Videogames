@@ -109,8 +109,6 @@ function VideogameForm (){
         setState({...state,errors:result})
         if(!Object.keys(result).length){
             //enviar formulario
-            console.log(state);
-            console.log('formulario valido');
             addGame(state);
             setSumbit(true);
         }

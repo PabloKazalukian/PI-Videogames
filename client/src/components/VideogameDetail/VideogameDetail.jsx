@@ -3,6 +3,7 @@ import {useParams} from 'react-router';
 import { useEffect } from "react";
 import Loading from "../Loading/Loading.jsx";
 import Error from "../Error404/Error404";
+import axios from 'axios';
 
 
 import {Container,ContainerDetail,ContainerImg,ContainerRest,Description,Img,Name} from './VideogameDetail'
@@ -17,15 +18,17 @@ function VideogameDetail (){
 
     
     useEffect(()=>{
-        fetch(`http://localhost:3001/videogames/${id}`)
-        .then(r =>{ 
-            if(!r.ok){
+        axios.get(`videogames/${id}`)
+        .then(r =>{
+            console.log( r);
+            if(r.status === '200'){
                 throw Error('could not fetch the data for that resource');
-            } 
-            return r.json()})
-        .then(json=>{setGame({
-            ...state, game:json
-        })})
+            }else{
+                setGame({
+                    ...state, game:r.data
+                })
+            }
+        })
         .catch(err=>{ 
             setError(err.message)})
         setTimeout(() => {
